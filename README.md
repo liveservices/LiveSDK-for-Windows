@@ -1,4 +1,2 @@
-LiveSDK-for-.Net
+LiveSDK for Windows and Windows Phone
 ================
-
-Live SDK for .Net
