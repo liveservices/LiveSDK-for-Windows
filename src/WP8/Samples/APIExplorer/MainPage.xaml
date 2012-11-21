@@ -1,0 +1,53 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="APIExplorer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    xmlns:my="clr-namespace:Microsoft.Live.Controls;assembly=Microsoft.Live.Controls">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="spSignIn" Grid.Row="0" Orientation="Horizontal">
+            <my:SignInButton Grid.Row="0" Name="btnLogin" ClientId="0000000048087D84" Scopes="wl.signin wl.basic wl.skydrive wl.offline_access" Branding="MicrosoftAccount" TextType="SignIn" SessionChanged="btnLogin_SessionChanged" />
+            <TextBlock x:Name="tbWelcome" Text="Welcome" Style="{StaticResource PhoneTextTitle1Style}" Height="60" FontSize="26" VerticalAlignment="Center" Padding="0, 10, 0, 0" />
+        </StackPanel>
+        <StackPanel x:Name="spTitle" Grid.Row="1" Orientation="Horizontal">
+            <Image x:Name="imgMe" Margin="20, 0, 0, 0" Height="70" Width="70" VerticalAlignment="Top" />
+            <ComboBox Height="50" Name="cbMethod" SelectionChanged="cbMethod_SelectionChanged" Margin="100, 0, 0, 0" Width="90" FontSize="16" />
+            <Button Name="btnGo" Content="Call API" Margin="10, 0, 0, 0" Height="70" Grid.Row="0" HorizontalAlignment="Left" Width="160" Visibility="Visible" Click="btnGo_Click"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="86*" />
+                <RowDefinition Height="492*" />
+            </Grid.RowDefinitions>
+            <StackPanel Height="80" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="480" Orientation="Horizontal" >
+                <TextBlock Text="Path:" FontSize="26" Height="60" Width="60" />
+                <TextBox Height="70" Name="tbUrl" Text="/me/contacts" Width="400" FontSize="18" />
+            </StackPanel>
+            <StackPanel  x:Name="spTo" Grid.Row="1" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Width="480" Orientation="Horizontal" >
+                <TextBlock Text="To:" FontSize="26" Height="60" Width="60" />
+                <TextBox Name="tbTo" Width="400" FontSize="18" />
+            </StackPanel>
+            <TextBox Grid.Row="1" Height="530" HorizontalAlignment="Left" Name="tbResponse" VerticalAlignment="Top" Width="460" TextWrapping="Wrap" FontSize="12" />
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>

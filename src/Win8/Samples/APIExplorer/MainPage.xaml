@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="APIExplorer.MainPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:APIExplorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Canvas HorizontalAlignment="Left" Height="850" Margin="100,80,0,0" VerticalAlignment="Top" Width="1000">
+            <Button x:Name="btnLogin" Content="Sign In" Canvas.Left="20" Click="btnLogin_Click" />
+            <Image x:Name="imgMe" Height="50" Width="50" Canvas.Left="150" VerticalAlignment="Top" />
+            <TextBlock x:Name="tbWelcome" Height="40" Width="500" Canvas.Left="220" FlowDirection="LeftToRight" Text="Welcome " TextAlignment="Left" FontSize="16" Padding="0,8,0,0" />
+            <TextBlock Height="30" Width="40" Canvas.Left="20"  Canvas.Top="70" FlowDirection="LeftToRight" Text="Path: " TextAlignment="Left" FontSize="16" Padding="0,8,0,0" />
+            <TextBox x:Name="tbUrl" Height="30" Canvas.Left="70" Text="/me" Canvas.Top="70" Width="500" FontSize="12"/>
+            <TextBlock Height="30" Width="70" Canvas.Left="580"  Canvas.Top="70" FlowDirection="LeftToRight" Text="Method:" TextAlignment="Left" FontSize="16" Padding="0,8,0,0" />
+            <ComboBox x:Name="cbMethod" Height="35" Canvas.Left="650" Canvas.Top="70" Width="90" FontSize="12" SelectionChanged="cbMethod_SelectionChanged" />
+            <Button x:Name="btnGo" Content="Go" Height="40" Width="50" Canvas.Top="67" Canvas.Left="750" FontWeight="Bold" Background="GhostWhite" Foreground="DarkBlue" FontSize="12" Click="btnGo_Click" />
+            <StackPanel x:Name="spTo" Canvas.Left="20"  Canvas.Top="140" Width="850" Orientation="Horizontal" Visibility="Collapsed">
+                <TextBlock Height="30" Width="40" FlowDirection="LeftToRight" Text="To: " TextAlignment="Left" FontSize="16" Padding="0,8,0,0" />
+                <TextBox x:Name="tbTo" Height="30" Width="800" />
+            </StackPanel>
+            <TextBox x:Name="tbResponse" Height="700" Canvas.Left="20" Canvas.Top="140" Width="850" FontSize="12" AcceptsReturn="True" />
+        </Canvas>
+    </Grid>
+</Page>

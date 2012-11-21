@@ -1,0 +1,40 @@
+﻿@model Microsoft.Live.Web.Samples.AuthWithMSAccount.Models.AccountDataModel
+@{
+    ViewBag.Title = "Basic";
+    var m = this.ViewData.Model;
+}
+
+@if (m.Error != null)
+{
+    <span>@m.Error</span>
+    <br />
+}
+
+<h2>Hello! You are logged in as @m.Name</h2>
+@if (m.ProfileImage != null)
+{
+    <img src="data:image/png;base64,@Convert.ToBase64String(m.ProfileImage)" /><br />
+}
+<br />
+<a href="@m.HomeURL">Home</a>
+<span> | </span>
+<a href="@m.LogoutURL">Log out</a>
+@if (m.Contacts == null) {
+    <span> | </span>
+    <a href="@m.ShowContactsURL">Show Contacts</a>
+}
+else
+{
+    <br />
+    <fieldset>
+        <legend>Contacts</legend>
+        <ul>
+            @foreach (dynamic contact in (IEnumerable<object>)m.Contacts)
+            {
+                <li>@contact.name</li>
+            }            
+        </ul>
+    </fieldset>
+}
+
+

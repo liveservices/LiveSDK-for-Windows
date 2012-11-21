@@ -1,0 +1,76 @@
+﻿namespace Microsoft.Live.Phone
+{
+    using System;
+    using System.Diagnostics;
+
+    using Microsoft.Phone.BackgroundTransfer;
+
+    /// <summary>
+    /// This class attaches to a BackgroundTransferRequest and converts its ProgressChanged events
+    /// to LiveOperationProgresses and forwards them to a IProgress interface.
+    /// </summary>
+    internal class BackgroundDownloadProgressEventAdapter 
+    {
+        private readonly IProgress<LiveOperationProgress> progress;
+
+        #region Constructors
+
+        /// <summary>
+        /// Constructs a new eventadapter that forwards events to the callback.
+        /// </summary>
+        /// <param name="progress">the callback that receives the forwarded events</param>
+        public BackgroundDownloadProgressEventAdapter(IProgress<LiveOperationProgress> progress)
+        {
+            Debug.Assert(progress != null);
+            this.progress = progress;
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Attaches to the request's TransferProgressChanged event.
+        /// It then converts these events to LiveOperationProgresses and gives them to the IProgress
+        /// interface that the object was constructed with.
+        /// NOTE: Call DetachFromCompletedRequest from this instance when the given request is Completed.
+        /// </summary>
+        /// <param name="request">request to attach to</param>
+        public void ConvertTransferProgressChanged(BackgroundTransferRequest request)
+        {
+            Debug.Assert(BackgroundTransferHelper.IsDownloadRequest(request));
+            request.TransferProgressChanged += this.HandleTransferProgressChanged;
+        }
+
+        /// <summary>
+        /// Detaches from the request's TransferProgressChanged event.
+        /// NOTE: The request should have its TransferStatus set to Completed before detaching.
+        /// This method should be called as part of cleaning up a completed request.
+        /// </summary>
+        /// <param name="request">request to detach to</param>
+        public void DetachFromCompletedRequest(BackgroundTransferRequest request)
+        {
+            Debug.Assert(request.TransferStatus == TransferStatus.Completed);
+            request.TransferProgressChanged -= this.HandleTransferProgressChanged;
+        }
+
+        /// <summary>
+        /// Handles TransferProgressChanged events from a BackgroundTransferRequest.
+        /// </summary>
+        private void HandleTransferProgressChanged(object sender, BackgroundTransferEventArgs e)
+        {
+            BackgroundTransferRequest request = e.Request;
+            long totalBytesToReceive = request.TotalBytesToReceive;
+            long bytesReceived = request.BytesReceived;
+            var args = new LiveOperationProgress(bytesReceived, totalBytesToReceive);
+            this.OnProgressChanged(args);
+        }
+
+        private void OnProgressChanged(LiveOperationProgress e)
+        {
+            this.progress.Report(e);
+        }
+
+        #endregion
+    }
+}

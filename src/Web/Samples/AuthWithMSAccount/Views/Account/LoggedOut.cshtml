@@ -1,0 +1,11 @@
+﻿@model Microsoft.Live.Web.Samples.AuthWithMSAccount.Models.LoggedOutModel
+@{
+    ViewBag.Title = "LoggedOut";
+    var m = this.ViewData.Model;
+}
+
+<h2>LoggedOut</h2>
+<a href="@m.LoginURL">Log in</a>
+<span> | </span>
+<a href="@m.AjaxClientURL">Ajax page</a>
+

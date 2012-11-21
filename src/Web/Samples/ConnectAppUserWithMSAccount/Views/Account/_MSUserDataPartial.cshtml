@@ -1,0 +1,29 @@
+﻿@model Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Models.MSAccountPageModel
+
+<h2>Hello! You are logged in as @Model.Name</h2>
+@if (Model.ProfileImage != null)
+{
+    <img src="data:image/png;base64,@Convert.ToBase64String(Model.ProfileImage)" /><br />
+}
+<br />
+@Html.Partial("_DisconnectMSAccountFormPartial")
+
+@if (Model.Contacts == null) 
+{
+    <a href="@Model.ShowContactsURL">Show Contacts</a>
+}
+else
+{
+    <br />
+    <h2>My Contacts</h2>
+    <fieldset id="mscontactlist">
+        <legend>Contacts</legend>
+        <ul>
+            @foreach (dynamic contact in (IEnumerable<object>)Model.Contacts)
+            {
+                <li>@contact.name</li>
+            }            
+        </ul>
+    </fieldset>
+}
+

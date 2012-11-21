@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="StreamUploadDownload.MainPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StreamUploadDownload"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Canvas HorizontalAlignment="Left" Height="800" Margin="100,80,0,0" VerticalAlignment="Top" Width="1100">
+            <Button x:Name="btnLogin" Content="Sign In" Canvas.Left="32" Canvas.Top="32" Click="btnLogin_Click" />
+            <TextBlock x:Name="tbWelcome" Height="40" Width="500" Canvas.Left="160" Canvas.Top="32" FlowDirection="LeftToRight" Text="Upload files to SkyDrive" TextAlignment="Left" FontSize="18" Padding="0,8" />
+            <TextBlock Height="30" Width="45" Canvas.Left="32"  Canvas.Top="100" FlowDirection="LeftToRight" Text="Path: " TextAlignment="Left" FontSize="16" Padding="0,8,0,0" />
+            <TextBox x:Name="tbUrl" Height="30" Canvas.Left="100" Text="/me/skydrive" Canvas.Top="100" Width="700" FontSize="12"/>
+            <Button x:Name="btnUploadFile" Content="Upload a file" Height="40" Width="140" Canvas.Top="160" Canvas.Left="32" FontSize="16" Click="btnUploadFile_Click" />
+            <Button x:Name="btnDownloadFile" Content="Download a file" Height="40" Width="150" Canvas.Top="160" Canvas.Left="200" FontSize="16" Click="btnDownload_Click" />
+            <Button x:Name="btnCancel" Content="Cancel" Height="40" Width="140" Canvas.Top="160" Canvas.Left="400" FontSize="16" Click="btnCancel_Click" IsEnabled="False" />
+            <Image x:Name="imgPreview" Height="600" Width="800" Canvas.Top="220" Canvas.Left="32" />
+            <TextBlock x:Name="tbMessage" Height="600" Width="800" Canvas.Top="220" Canvas.Left="32" TextWrapping="Wrap" FontSize="16" Visibility="Collapsed"/>
+            <ProgressBar x:Name="progressBar" Height="5" Canvas.Top="220" Canvas.Left="32" Width="800" Visibility="Collapsed" />
+        </Canvas>
+    </Grid>
+</Page>

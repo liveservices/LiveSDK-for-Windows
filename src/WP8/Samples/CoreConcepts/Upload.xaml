@@ -1,0 +1,48 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="CoreConcepts.Upload"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="706*" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Margin="12,-10,0,0">
+            <TextBlock x:Name="MemoryMonitor" Text="cur: {0} av: {1} lim: {2}" Margin="9,5,0,0" Height="53" />
+            <TextBlock x:Name="PageTitle" Text="Upload to SkyDrive" Margin="9,-15,0,0" Style="{StaticResource PhoneTextTitle2Style}"/>
+        </StackPanel>
+       <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Height="70" Name="TextBoxUrl"  Grid.Row="0" Text="/me/skydrive" FontSize="18" />
+            <Button Content="Select a picture" Grid.Row="1" Height="70" HorizontalAlignment="Left" Name="SelectPicture" VerticalAlignment="Top" Width="250" Click="SelectPicture_Click" IsEnabled="False"/>
+            <Button Content="Select a file" Grid.Row="1" Height="70" HorizontalAlignment="Left" Margin="240,0,0,0" Name="SelectFile" VerticalAlignment="Top" Width="228" Click="SelectFile_Click" IsEnabled="False" />
+            <StackPanel Name="FileListPanel" Grid.Row="2" Height="520" Width="468" Visibility="Collapsed">
+                
+            </StackPanel>
+            <TextBlock Grid.Row="2" Height="520" HorizontalAlignment="Left" Name="Message" VerticalAlignment="Top" Width="460" TextWrapping="Wrap" FontSize="20" Visibility="Collapsed" />
+            <Image Grid.Row="3" Name="imgPreview" Width="468" />
+            <ProgressBar Grid.Row="2" Height="5" HorizontalAlignment="Left" Margin="0,50,0,0" Name="ProgressBar" VerticalAlignment="Top" Width="468" />
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

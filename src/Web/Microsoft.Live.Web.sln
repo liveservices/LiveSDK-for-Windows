@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Live.Web", "Source\Microsoft.Live.Web.csproj", "{88EAFA9B-2752-45D6-8DF1-53FDADB06575}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{46E2EB83-E801-4426-8F82-E3D984F5B230}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Microsoft.Live.Web.vsmdi = Microsoft.Live.Web.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Live.Web.UnitTests", "UnitTests\Microsoft.Live.Web.UnitTests.csproj", "{6F14D777-389A-4B5A-9AB5-B6F246957D5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Live.Web.Samples.AuthWithMSAccount", "Samples\AuthWithMSAccount\Microsoft.Live.Web.Samples.AuthWithMSAccount.csproj", "{500DC94D-C51A-445D-816B-2DBADD75A1A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount", "Samples\ConnectAppUserWithMSAccount\Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.csproj", "{D8C7F892-E6F4-4564-A970-8D8BE80E608C}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Microsoft.Live.Web.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88EAFA9B-2752-45D6-8DF1-53FDADB06575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88EAFA9B-2752-45D6-8DF1-53FDADB06575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88EAFA9B-2752-45D6-8DF1-53FDADB06575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88EAFA9B-2752-45D6-8DF1-53FDADB06575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F14D777-389A-4B5A-9AB5-B6F246957D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F14D777-389A-4B5A-9AB5-B6F246957D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F14D777-389A-4B5A-9AB5-B6F246957D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F14D777-389A-4B5A-9AB5-B6F246957D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500DC94D-C51A-445D-816B-2DBADD75A1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500DC94D-C51A-445D-816B-2DBADD75A1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500DC94D-C51A-445D-816B-2DBADD75A1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500DC94D-C51A-445D-816B-2DBADD75A1A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C7F892-E6F4-4564-A970-8D8BE80E608C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C7F892-E6F4-4564-A970-8D8BE80E608C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C7F892-E6F4-4564-A970-8D8BE80E608C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C7F892-E6F4-4564-A970-8D8BE80E608C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

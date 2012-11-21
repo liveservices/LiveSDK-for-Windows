@@ -1,0 +1,5 @@
+﻿@using (Html.BeginForm("DisconnectMicrosoft", "Account", FormMethod.Post, new { id = "disconnectMSForm" }))
+{
+    @Html.AntiForgeryToken()
+    <a href="javascript:document.getElementById('disconnectMSForm').submit()">Disconnect from your Microsoft account</a>
+}

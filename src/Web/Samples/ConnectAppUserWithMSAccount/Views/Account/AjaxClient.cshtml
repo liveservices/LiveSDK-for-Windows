@@ -1,0 +1,141 @@
+﻿@model Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Models.JSClientModel
+@{
+    ViewBag.Title = "AjaxClient";
+    var m = this.ViewData.Model;
+}
+
+<h2>AjaxClient</h2>
+
+<div id="meName" class="Name"></div>
+<div id="meImg"></div>
+<label>Current scope: </label><span id="currentScope"></span>
+<br />
+<select size="7" id="select-scopes" multiple="multiple" aria-labelledby="listLabel">
+	<option selected="selected">wl.signin</option>
+    <option>wl.basic</option>
+    <option>wl.birthday</option>
+    <option>wl.calendars</option>
+    <option>wl.calendars_update</option>
+    <option>wl.contacts_birthday</option>
+    <option>wl.contacts_create</option>
+    <option>wl.contacts_calendars</option>
+    <option>wl.contacts_photos</option>
+    <option>wl.contacts_skydrive</option>
+    <option>wl.emails</option>
+    <option>wl.events_create</option>
+    <option>wl.offline_access</option>
+    <option>wl.phone_numbers</option>
+    <option>wl.photos</option>
+    <option>wl.postal_addresses</option>
+    <option>wl.share</option>
+    <option>wl.skydrive</option>
+    <option>wl.skydrive_update</option>
+    <option>wl.work_profile</option>
+</select>
+<button onclick="authorize();" >Connect/Authorize</button>
+<button id="button_showcontacts" onclick="showContacts();" >Show Contacts</button>
+<br />
+<div id="contactsBox"></div>
+<script src="@m.JSPath"></script>
+<script type="text/javascript">
+
+    WL.Event.subscribe("auth.login", onLogin);
+    WL.Event.subscribe("auth.logout", onLogout);
+    WL.Event.subscribe("auth.sessionChange", onSessionChange);
+    WL.init({
+        client_id: "@m.ClientId",
+        redirect_uri: "@m.RedirectUri",
+        refresh_type: "app",
+        response_type: "code",
+        scope: "@m.Scope"
+    });
+    
+    var meImgInitialized = false;
+
+    function setMe(clear) {
+
+        var imgHolder = document.getElementById("meImg"),
+            meNameHolder = document.getElementById("meName");
+        if (clear) {
+            imgHolder.innerHTML = "";
+            meNameHolder.innerHTML = "";
+            meImgInitialized = false;
+            return;
+        }
+
+        if (meImgInitialized) return;
+
+        var session = WL.getSession(),
+            token = session != null ? session.access_token : null;
+
+        if (token != null) {
+            var url = "https://apis.live.net/v5.0/me/picture?access_token=" + escape(token);
+            imgTagString = "<img src='" + url + "' />";
+            imgHolder.innerHTML = imgTagString;
+
+            WL.api({ path: "me", method: "get" }, function (response) {
+                if (!response.error) {
+                    document.getElementById("meName").innerHTML = response.first_name + " " + response.last_name;
+                }
+            });
+            meImgInitialized = true;
+        }
+    }
+
+    function onLogin(response) {
+        setMe(false);
+    }
+
+    function onLogout(response) {
+        setMe(true);
+    }
+
+    function onSessionChange(response) {
+        var scope = "",
+            session = response.session;
+        if (session != null) {
+            scope = session.scope.join(" ");
+        }
+
+        document.getElementById("currentScope").innerText = scope;
+    }
+
+    function authorize() {
+        var options = document.getElementById("select-scopes").options,
+            scopes = [];
+        for (var i = 0; i < options.length; i++) {
+            if (options[i].selected) {
+                scopes.push(options[i].text);
+            }
+        }
+
+        WL.login({ scope: scopes});
+    }
+
+    function showContacts() {
+        
+        WL.login({ scope: "wl.basic" }).then(
+            function (resp) {
+                return WL.api({ path: "me/contacts" });
+            }
+        ).then(
+            function (resp) {
+                var container = document.getElementById("contactsBox"),
+                    button = document.getElementById("button_showcontacts");
+
+                var contentStart = "<h2>My Contacts</h2><fieldset id='mscontactlist'><legend>Contacts</legend><ul>",
+                    contentEnd = "</ul></fieldset>",
+                    contentCenter = "";
+                for (var i = 0; i < resp.data.length; i++) {
+                    contentCenter += "<li>" + resp.data[i].name + "</li>";
+                }
+
+                container.innerHTML = contentStart + contentCenter + contentEnd;
+                button.style.display = "none";
+            }
+        );
+    }
+
+    setMe(false);
+
+</script>

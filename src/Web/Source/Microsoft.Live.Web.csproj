@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88EAFA9B-2752-45D6-8DF1-53FDADB06575}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Live</RootNamespace>
+    <AssemblyName>Microsoft.Live.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WEB</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\..\..\..\..\..\extern\AsyncPack\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\..\..\..\..\..\extern\AsyncPack\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Common\Source\Public\LiveAuthException.cs">
+      <Link>Public\LiveAuthException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\OverwriteOption.cs">
+      <Link>Public\OverwriteOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveOperationResult.cs">
+      <Link>Public\LiveOperationResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveOperationProgress.cs">
+      <Link>Public\LiveOperationProgress.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectSession.cs">
+      <Link>Public\LiveConnectSession.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectSessionStatus.cs">
+      <Link>Public\LiveConnectSessionStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveLoginResult.cs">
+      <Link>Public\LiveLoginResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\IRefreshTokenHandler.cs">
+      <Link>Public\IRefreshTokenHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\RefreshTokenInfo.cs">
+      <Link>Public\RefreshTokenInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\DynamicDictionary.cs">
+      <Link>Internal\DynamicDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\WebRequestFactory.cs">
+      <Link>Internal\WebRequestFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\IWebRequestFactory.cs">
+      <Link>Internal\IWebRequestFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectClient.cs">
+      <Link>Public\LiveConnectClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectClientTaskAsync.cs">
+      <Link>Public\LiveConnectClientTaskAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectException.cs">
+      <Link>Internal\LiveConnectException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\StringBuilderExtension.cs">
+      <Link>Internal\StringBuilderExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\IServerResponseReaderObserver.cs">
+      <Link>Internal\IServerResponseReaderObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\QueryParameters.cs">
+      <Link>Internal\QueryParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\ServerResponseReader.cs">
+      <Link>Internal\ServerResponseReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\Operation.cs">
+      <Link>Internal\Operations\Operation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\ApiOperation.cs">
+      <Link>Internal\Operations\ApiOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\ApiWriteOperation.cs">
+      <Link>Internal\Operations\ApiWriteOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\GetUploadLinkOperation.cs">
+      <Link>Internal\Operations\GetUploadLinkOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\OperationStatus.cs">
+      <Link>Internal\Operations\OperationStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\WebOperation.cs">
+      <Link>Internal\Operations\WebOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\StreamCopyOperation.cs">
+      <Link>Internal\Operations\StreamCopyOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\HttpMethods.cs">
+      <Link>Internal\HttpMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\ApiMethod.cs">
+      <Link>Internal\ApiMethod.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\AuthEndpointsInfo.cs">
+      <Link>Internal\AuthEndpointsInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\AuthErrorCodes.cs">
+      <Link>Internal\AuthErrorCodes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Utilities\ErrorText.Designer.cs">
+      <Link>Internal\Utilities\ErrorText.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorText.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\LiveAuthClientCore.cs" />
+    <Compile Include="..\..\Common\Source\Internal\Serialization\JsonReader.cs">
+      <Link>Internal\Serialization\JsonReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Serialization\JsonWriter.cs">
+      <Link>Internal\Serialization\JsonWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Serialization\IndentedTextWriter.cs">
+      <Link>Internal\Serialization\IndentedTextWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Serialization\IJsonSerializable.cs">
+      <Link>Internal\Serialization\IJsonSerializable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Utilities\LiveAuthUtility.cs">
+      <Link>Internal\Utilities\LiveAuthUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Utilities\LiveUtility.cs">
+      <Link>Internal\Utilities\LiveUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\AuthConstant.cs">
+      <Link>Internal\AuthConstant.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\ResponseType.cs">
+      <Link>Internal\ResponseType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\DisplayType.cs">
+      <Link>Internal\DisplayType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\ThemeType.cs">
+      <Link>Internal\ThemeType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\DownloadOperation.cs">
+      <Link>Internal\Operations\DownloadOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\UploadOperation.cs">
+      <Link>Internal\Operations\UploadOperation.cs</Link>
+    </Compile>
+    <Compile Include="Internal\Utilities\HttpContextUtility.cs" />
+    <Compile Include="Internal\Utilities\JsonWebToken.cs" />
+    <Compile Include="Internal\Utilities\JsonWebTokenClaims.cs" />
+    <Compile Include="Internal\Utilities\JsonWebTokenEnvelope.cs" />
+    <Compile Include="..\..\Common\Source\Internal\Utilities\LiveAuthRequestUtility.cs">
+      <Link>Internal\Utilities\LiveAuthRequestUtility.cs</Link>
+    </Compile>
+    <Compile Include="Internal\Platform.cs" />
+    <Compile Include="..\..\WP8\Source\Internal\SynchronizationContextWrapper.cs">
+      <Link>Internal\SynchronizationContextWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\WP8\Source\Internal\ResourceHelper.cs">
+      <Link>Internal\ResourceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\WP8\Source\Resources.Designer.cs">
+      <Link>Internal\Resources.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\Utilities\LiveAuthWebUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\LiveAuthClient.cs" />
+    <Compile Include="Public\LiveConnectClientExt.cs" />
+    <Compile Include="..\..\WP8\Source\Internal\LiveDownloadOperationResult.cs">
+      <Link>Public\LiveDownloadOperationResult.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Common\Source\Internal\Utilities\ErrorText.resx">
+      <Link>Internal\Utilities\ErrorText.resx</Link>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Microsoft.Live</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\WP8\Source\Resources.resx">
+      <Link>Internal\Resources.resx</Link>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Microsoft.Live</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

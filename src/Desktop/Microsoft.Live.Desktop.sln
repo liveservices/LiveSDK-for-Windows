@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Live.Desktop", "Source\Microsoft.Live.Desktop.csproj", "{5C8C880F-FB9B-40CA-955D-B460E7B3AF6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Live.Desktop.Samples.ApiExplorer", "Samples\ApiExplorer\Microsoft.Live.Desktop.Samples.ApiExplorer.csproj", "{1AA19116-3EB7-489D-A64D-D4C138B1F2AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Live.Desktop.UnitTests", "UnitTests\Microsoft.Live.Desktop.UnitTests.csproj", "{C0428800-DDEE-4D97-88E8-4297A9522D0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C8C880F-FB9B-40CA-955D-B460E7B3AF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C8C880F-FB9B-40CA-955D-B460E7B3AF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C8C880F-FB9B-40CA-955D-B460E7B3AF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C8C880F-FB9B-40CA-955D-B460E7B3AF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA19116-3EB7-489D-A64D-D4C138B1F2AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA19116-3EB7-489D-A64D-D4C138B1F2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA19116-3EB7-489D-A64D-D4C138B1F2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA19116-3EB7-489D-A64D-D4C138B1F2AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0428800-DDEE-4D97-88E8-4297A9522D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0428800-DDEE-4D97-88E8-4297A9522D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0428800-DDEE-4D97-88E8-4297A9522D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0428800-DDEE-4D97-88E8-4297A9522D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

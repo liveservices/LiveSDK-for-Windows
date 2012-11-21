@@ -1,0 +1,40 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="StreamUploadDownload.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False" xmlns:my="clr-namespace:Microsoft.Live.Controls;assembly=Microsoft.Live.Controls">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <my:SignInButton HorizontalAlignment="Left" Name="btnSignin" VerticalAlignment="Top" ClientId="0000000044087346" Scopes="wl.signin wl.basic wl.skydrive_update wl.offline_access" Branding="Skydrive"  SessionChanged="OnSessionChanged" TextType="Connect" />
+        <TextBlock x:Name="tbWelcome" Grid.Row="0" Text="Upload to SkyDrive" Style="{StaticResource PhoneTextTitle1Style}" FontSize="32" Margin="190,5,0,0" />
+        <TextBox Height="70" Name="tbUrl"  Grid.Row="1" Text="/me/skydrive" FontSize="18" />
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Content="Select a file" Grid.Row="0" Height="70" HorizontalAlignment="Left" Name="btnSelectFile" VerticalAlignment="Top" Width="200" Click="btnSelectFile_Click"/>
+            <TextBox Grid.Row="1" Height="520" HorizontalAlignment="Left" Name="tbMessage" VerticalAlignment="Top" Width="460" TextWrapping="Wrap" FontSize="12" Visibility="Collapsed" />
+            <Image Grid.Row="1" Name="imgPreview" Width="468" />
+            <ProgressBar Grid.Row="1" Height="5" HorizontalAlignment="Left" Margin="0,50,0,0" Name="progressBar" VerticalAlignment="Top" Width="468" />
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>

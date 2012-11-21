@@ -1,0 +1,31 @@
+﻿@model Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Models.MSAccountPageModel
+@{
+    ViewBag.Title = "Microsoft Account";    
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+<a href="@Model.AjaxClientURL">Ajax Client Page</a>
+@if (Model.Error != null)
+{
+    <span>@Model.Error</span>
+    <br />
+}
+
+@switch (Model.Status)
+{
+    case Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Controllers.MSAccountStatus.Connected:
+        @Html.Partial("_MSUserDataPartial")
+        break;
+    case Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Controllers.MSAccountStatus.ConnectedWithError: 
+        <span>There is an issue with your current account. Try        
+            <a href="@Model.LoginUrl" >reconnect</a> with your Microsoft Account.
+        </span>
+        <br />
+        @Html.Partial("_DisconnectMSAccountFormPartial");
+        break;
+    case Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Controllers.MSAccountStatus.NotConnected:
+        <span><a href="@Model.LoginUrl" >Connect</a> with your Microsoft Account</span>
+        break;
+}
