@@ -240,7 +240,7 @@
     <EmbeddedResource Include="Resources\WLText.zu-za.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\..\..\Resources\fonts\LiveSymbol\LiveSymbol.ttf">
+    <Resource Include="..\..\Common\Resources\fonts\LiveSymbol\LiveSymbol.ttf">
       <Link>LiveSymbol.ttf</Link>
     </Resource>
   </ItemGroup>
