@@ -68,7 +68,7 @@
                 if (!string.IsNullOrEmpty(this.authClient.RedirectUrl) &&
                     !this.authClient.RedirectUrl.StartsWith(Win8AppIdPrefix, StringComparison.OrdinalIgnoreCase))
                 {
-                    authenticationToken = await this.GetAuthenticationToken(this.authClient.RedirectUrl);
+                    authenticationToken = await this.GetAuthenticationToken(this.authClient.RedirectUrl, silent);
                     session.AuthenticationToken = authenticationToken;
                 }
 
@@ -151,7 +151,7 @@
             return ticket;
         }
 
-        private async Task<string> GetAuthenticationToken(string redirectDomain)
+        private async Task<string> GetAuthenticationToken(string redirectDomain, bool silent)
         {
             string ticket = string.Empty;
 
@@ -160,7 +160,8 @@
             var ticketRequests = new List<OnlineIdServiceTicketRequest>();
             ticketRequests.Add(new OnlineIdServiceTicketRequest(redirectUri.DnsSafeHost, "JWT"));
 
-            UserIdentity identity = await this.authenticator.AuthenticateUserAsync(ticketRequests, CredentialPromptType.DoNotPrompt);
+            var promptType = silent ? CredentialPromptType.DoNotPrompt : CredentialPromptType.PromptIfNeeded;
+            UserIdentity identity = await this.authenticator.AuthenticateUserAsync(ticketRequests, promptType);
             if (identity.Tickets != null && identity.Tickets.Count > 0)
             {
                 ticket = identity.Tickets[0].Value;

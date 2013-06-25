@@ -26,6 +26,7 @@
 
         public string AuthenticationToken { get; internal set; }
 
+#if !WINDOWS_STORE
         public DateTimeOffset Expires { get; internal set; }
         
         public string RefreshToken { get; internal set; }
@@ -40,7 +41,7 @@
                     this.Expires > DateTimeOffset.UtcNow.Add(ExpirationTimeBufferInSec));
             }
         }
-
+#endif
         internal LiveAuthClient AuthClient { get; set; }
 
         #endregion

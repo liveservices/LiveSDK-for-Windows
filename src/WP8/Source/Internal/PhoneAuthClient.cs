@@ -8,6 +8,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Navigation;
 
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
@@ -20,12 +21,15 @@
     internal class PhoneAuthClient : IAuthClient
     {
         private const int RenderSizeOffset = 32;  // SystemTray size in portait mode.
+        private const string True = "true";
+        private const string False = "false";
 
         private Action<string, Exception> callback; 
         private Popup popup;
         private PhoneApplicationPage rootPage;
         private IApplicationBar appBar;
         private readonly LiveAuthClient liveAuthClient;
+        private string signingOut;
 
         /// <summary>
         /// Initialize the PhoneAuthClient object.
@@ -89,30 +93,42 @@
                 throw new InvalidOperationException(ResourceHelper.GetString("RootVisualNotRendered"));
             }
 
-            // Store the application bar and remove from the page so it doesn't interfere with the popup login page.
-            // It is restored when the popup closes.
-            this.rootPage = rootVisual.Content as PhoneApplicationPage;
-            if (this.rootPage != null)
+            this.ClearAuthCookieIfNeeded(delegate()
             {
-                this.appBar = rootPage.ApplicationBar;
-                this.rootPage.ApplicationBar = null;
-            }
+                if (this.IsSigningOut)
+                {
+                    // We are still signing out?! meaning we probably failed to connect to the network, then fail the request.
+                    callback(
+                        null,  
+                        new LiveAuthException(AuthErrorCodes.ClientError, ResourceHelper.GetString("ConnectionError")));
+                    return;
+                }
 
-            var loginPage = new LoginPage(consentUrl, this.liveAuthClient.RedirectUrl, this.OnLoginPageCompleted);
+                // Store the application bar and remove from the page so it doesn't interfere with the popup login page.
+                // It is restored when the popup closes.
+                this.rootPage = rootVisual.Content as PhoneApplicationPage;
+                if (this.rootPage != null)
+                {
+                    this.appBar = rootPage.ApplicationBar;
+                    this.rootPage.ApplicationBar = null;
+                }
 
-            int offset = 0;
-            if (SystemTray.IsVisible)
-            {
-                offset = PhoneAuthClient.RenderSizeOffset;
-            }
-            offset = (rootVisual.RenderSize.Height >= offset) ? offset : 0;
-            this.popup = new Popup()
-            {
-                Child = loginPage, 
-                VerticalOffset = offset, 
-                Height = Application.Current.RootVisual.RenderSize.Height - offset,
-                IsOpen = true
-            };
+                var loginPage = new LoginPage(consentUrl, this.liveAuthClient.RedirectUrl, this.OnLoginPageCompleted);
+
+                int offset = 0;
+                if (SystemTray.IsVisible)
+                {
+                    offset = PhoneAuthClient.RenderSizeOffset;
+                }
+                offset = (rootVisual.RenderSize.Height >= offset) ? offset : 0;
+                this.popup = new Popup()
+                {
+                    Child = loginPage,
+                    VerticalOffset = offset,
+                    Height = Application.Current.RootVisual.RenderSize.Height - offset,
+                    IsOpen = true
+                };
+            });
         }
 
         /// <summary>
@@ -130,6 +146,8 @@
 
                 appData.Save();
             }
+
+            this.BeginClearAuthCookie();
         }
 
         /// <summary>
@@ -213,6 +231,108 @@
                         }
                     });
             }
+        }
+
+        private bool IsSigningOut
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.signingOut))
+                {
+                    // If the data member has not been initialized yet, initialize it by reading from the storage.
+                    var appData = IsolatedStorageSettings.ApplicationSettings;
+                    var key = LiveAuthClient.StorageConstants.SigningOut;
+
+                    if (appData.Contains(key))
+                    {
+                        this.signingOut = appData[key] as string;
+
+                        Debug.Assert(this.signingOut == True || this.signingOut == False);
+                    }
+                    else
+                    {
+                        this.signingOut = False;
+                    }
+                }
+
+                return this.signingOut == True;
+            }
+            set
+            {
+                string newValue = value ? True : False;
+                if (this.signingOut != newValue)
+                {
+                    this.signingOut = newValue;
+                    var appData = IsolatedStorageSettings.ApplicationSettings;
+                    appData[LiveAuthClient.StorageConstants.SigningOut] = newValue;
+
+                    try
+                    {
+                        appData.Save();
+                    }
+                    catch (IsolatedStorageException)
+                    {
+                        // Ignore the exception.
+                    }
+                }
+            }
+        }
+
+        private Uri SignOutUrl
+        {
+            get
+            {
+#if DEBUG
+                var authEndpoint = string.IsNullOrEmpty(LiveAuthClient.AuthEndpointOverride) ?
+                    LiveAuthClient.DefaultConsentEndpoint : LiveAuthClient.AuthEndpointOverride.TrimEnd('/');
+#else
+                var authEndpoint = LiveAuthClient.DefaultConsentEndpoint;
+#endif
+                return new Uri(authEndpoint + AuthEndpointsInfo.LogoutPath);
+            }
+        }
+
+        private void BeginClearAuthCookie()
+        {
+            this.IsSigningOut = true;
+            this.ClearAuthCookie(null);
+        }
+
+        private void ClearAuthCookieIfNeeded(Action callback)
+        {
+            if (this.IsSigningOut)
+            {
+                this.ClearAuthCookie(callback);
+            }
+            else
+            {
+                callback();
+            }
+        }
+
+        private void ClearAuthCookie(Action callback)
+        {
+            WebBrowser browser = new WebBrowser();
+            browser.Navigated += (object sender, NavigationEventArgs e) =>
+            {
+                // We navigated to the sign out page.
+                this.IsSigningOut = false;
+                if (callback != null)
+                {
+                    callback();
+                }
+            };
+
+            browser.NavigationFailed += (object sender, NavigationFailedEventArgs e) =>
+            {
+                // Navigation failed.
+                if (callback != null)
+                {
+                    callback();
+                }
+            };
+
+            browser.Navigate(this.SignOutUrl);
         }
     }
 }

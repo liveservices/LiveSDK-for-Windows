@@ -27,6 +27,7 @@
         internal static class StorageConstants
         {
             public const string RefreshToken = "Microsoft.Live.LiveAuthClient.RefreshToken";
+            public const string SigningOut = "Microsoft.Live.LiveAuthClient.SigningOut";
         }
 
         /// <summary>

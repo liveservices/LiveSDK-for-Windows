@@ -145,9 +145,12 @@
                 }
 
                 downloader = new BT.BackgroundDownloader();
-                downloader.SetRequestHeader(
-                    ApiOperation.AuthorizationHeader,
-                    AuthConstants.BearerTokenType + " " + this.LiveClient.Session.AccessToken);
+                if (this.LiveClient.Session != null)
+                {
+                    downloader.SetRequestHeader(
+                        ApiOperation.AuthorizationHeader,
+                        AuthConstants.BearerTokenType + " " + this.LiveClient.Session.AccessToken);
+                }
                 downloader.SetRequestHeader(ApiOperation.LibraryHeader, Platform.GetLibraryHeaderValue());
             }
             else

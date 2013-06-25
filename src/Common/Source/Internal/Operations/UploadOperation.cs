@@ -91,6 +91,13 @@
             {
                 try
                 {
+                    var httpRequest = this.Request as HttpWebRequest;
+                    if (httpRequest != null && this.InputStream.CanSeek)
+                    {
+                        httpRequest.AllowWriteStreamBuffering = false;
+                        httpRequest.ContentLength = this.InputStream.Length;
+                    }
+
                     this.Request.BeginGetRequestStream(this.OnGetRequestStreamCompleted, null);
                 }
                 catch (WebException exception)

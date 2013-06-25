@@ -285,6 +285,11 @@
             CancellationToken ct, 
             IProgress<LiveOperationProgress> progress)
         {
+            if (this.Session == null)
+            {
+                throw new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
+            }
+
             var tcs = new TaskCompletionSource<LiveDownloadOperationResult>();
 
             var op = new TailoredDownloadOperation(

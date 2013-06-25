@@ -199,9 +199,12 @@
 
             var uploader = new BT.BackgroundUploader();
             uploader.Group = LiveConnectClient.LiveSDKUploadGroup;
-            uploader.SetRequestHeader(
-                ApiOperation.AuthorizationHeader,
-                AuthConstants.BearerTokenType + " " + this.LiveClient.Session.AccessToken);
+            if (this.LiveClient.Session != null)
+            {
+                uploader.SetRequestHeader(
+                    ApiOperation.AuthorizationHeader,
+                    AuthConstants.BearerTokenType + " " + this.LiveClient.Session.AccessToken);
+            }
             uploader.SetRequestHeader(ApiOperation.LibraryHeader, Platform.GetLibraryHeaderValue());
             uploader.Method = HttpMethods.Put;
 

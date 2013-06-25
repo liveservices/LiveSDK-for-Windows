@@ -195,7 +195,7 @@
                 LiveAuthClient.BuildScopeString(this.scopes),
                 silent);
 
-            if (result.Session != null && !AreSessionsSame(this.Session, result.Session))
+            if (result.Session != null && !LiveAuthClient.AreSessionsSame(this.Session, result.Session))
             {
                 this.MergeScopes();
                 this.Session = result.Session;
@@ -297,7 +297,12 @@
 
             }
 
-            if (result.Session != null && !AreSessionsSame(this.Session, result.Session))
+            if (result.Status == LiveConnectSessionStatus.Unknown)
+            {
+                // If the auth result indicates that the current account is not connected, we should clear the session
+                this.Session = null;
+            }
+            else if (result.Session != null && !LiveAuthClient.AreSessionsSame(this.Session, result.Session))
             {
                 this.Session = result.Session;
             }

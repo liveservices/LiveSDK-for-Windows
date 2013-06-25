@@ -119,6 +119,11 @@
                 throw new ArgumentException(message, "downloadLocation");
             }
 
+            if (this.Session == null)
+            {
+                throw new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
+            }
+
             Uri requestUri = this.GetResourceUri(path, ApiMethod.Download);
 
             var builder = new BackgroundDownloadOperation.Builder
@@ -207,6 +212,11 @@
                                                ResourceHelper.GetString("UriMustBeRootedInSharedTransfers"),
                                                "uploadLocation");
                 throw new ArgumentException(message, "uploadLocation");
+            }
+
+            if (this.Session == null)
+            {
+                throw new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
             }
 
             var builder = new BackgroundUploadOperation.Builder
@@ -299,6 +309,11 @@
                                                ResourceHelper.GetString("UrlInvalid"),
                                                "path");
                 throw new ArgumentException(message, "path");
+            }
+
+            if (this.Session == null)
+            {
+                throw new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
             }
 
             var tcs = new TaskCompletionSource<LiveDownloadOperationResult>();

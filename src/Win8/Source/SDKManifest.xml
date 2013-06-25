@@ -5,7 +5,7 @@
 -->
 
 <FileList
-    Identity = "LiveSDKXAML, Version=5.0"
+    Identity = "LiveSDKXAML, Version=5.4"
     DisplayName = "Live SDK"
 
     MinVSVersion = "11.0"

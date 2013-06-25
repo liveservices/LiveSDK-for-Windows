@@ -237,8 +237,11 @@
                 }
 
                 this.Request = WebRequestFactory.Current.CreateWebRequest(this.Url, httpMethod);
-                this.Request.Headers[ApiOperation.AuthorizationHeader] =
-                    AuthConstants.BearerTokenType + " " + this.LiveClient.Session.AccessToken;
+                if (this.LiveClient.Session != null)
+                {
+                    this.Request.Headers[ApiOperation.AuthorizationHeader] =
+                        AuthConstants.BearerTokenType + " " + this.LiveClient.Session.AccessToken;
+                }
                 this.Request.Headers[ApiOperation.LibraryHeader] = Platform.GetLibraryHeaderValue();
 
                 if (!string.IsNullOrEmpty(this.Body))
@@ -258,7 +261,8 @@
         protected bool RefreshTokenIfNeeded()
         {
             bool needsRefresh = false;
-            LiveAuthClient authClient = this.LiveClient.Session.AuthClient;
+            var session = this.LiveClient.Session;
+            LiveAuthClient authClient = (session != null) ? session.AuthClient : null;
             if (!this.refreshed && authClient != null)
             {
                 this.refreshed = true;
@@ -278,9 +282,19 @@
         /// </summary>
         private void OnRefreshTokenOperationCompleted(LiveLoginResult result)
         {
-            if (result.Status == LiveConnectSessionStatus.Connected)
+            switch (result.Status)
             {
-                this.LiveClient.Session = result.Session;
+                case LiveConnectSessionStatus.Connected:
+                    this.LiveClient.Session = result.Session;
+                    break;
+                case LiveConnectSessionStatus.Unknown:
+                    // Once we know the user is unknown, we clear the session and fail the operation. 
+                    // On Windows Blue, the user may disconnect the Microsoft account. 
+                    // We ensure we are not allowing app to continue to access user's data after the user disconnects the account.
+                    this.LiveClient.Session = null;
+                    var error = new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
+                    this.OnOperationCompleted(new LiveOperationResult(error, false));
+                    return;
             }
 
             // We will attempt to perform the operation even if refresh fails.

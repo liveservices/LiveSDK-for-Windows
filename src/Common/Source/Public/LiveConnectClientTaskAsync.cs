@@ -224,6 +224,11 @@
 
         private Task<LiveOperationResult> ExecuteApiOperation(ApiOperation op, CancellationToken ct)
         {
+            if (this.Session == null)
+            {
+                throw new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
+            }
+
             var tcs = new TaskCompletionSource<LiveOperationResult>();
             op.OperationCompletedCallback = (LiveOperationResult opResult) =>
             {

@@ -10,7 +10,7 @@
     internal class JsonWebTokenClaims
     {
         [DataMember(Name = "exp")]
-        private int expUnixTime
+        private long expUnixTime
         {
             get;
             set;

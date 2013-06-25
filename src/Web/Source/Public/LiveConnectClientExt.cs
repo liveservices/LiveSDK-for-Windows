@@ -40,6 +40,11 @@
         {
             LiveUtility.ValidateNotNullOrWhiteSpaceString(path, "path");
 
+            if (this.Session == null)
+            {
+                throw new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
+            }
+
             var tcs = new TaskCompletionSource<LiveDownloadOperationResult>();
             var op = new DownloadOperation(
                 this,
@@ -125,6 +130,11 @@
                                                ResourceHelper.GetString("StreamNotReadable"),
                                                "inputStream");
                 throw new ArgumentException(message, "inputStream");
+            }
+
+            if (this.Session == null)
+            {
+                throw new LiveConnectException(ApiOperation.ApiClientErrorCode, ResourceHelper.GetString("UserNotLoggedIn"));
             }
 
             var tcs = new TaskCompletionSource<LiveOperationResult>();

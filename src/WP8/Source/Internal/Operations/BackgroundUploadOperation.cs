@@ -200,7 +200,7 @@
             var builder = new BackgroundUploadRequestBuilder
             {
                 RequestUri = uploadRequestUri,
-                AccessToken = this.client.Session.AccessToken,
+                AccessToken = (this.client.Session != null) ? this.client.Session.AccessToken : "",
                 UploadLocationOnDevice = this.uploadLocationOnDevice,
                 DownloadLocationOnDevice = downloadLocationOnDevice,
                 TransferPreferences = this.transferPreferences
