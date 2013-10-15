@@ -18,7 +18,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 {
     public partial class MainForm : Form, IRefreshTokenHandler
     {
-        // Update the ClientID with your app client Id that you created from https://manage.dev.live.com.
+        // Update the ClientID with your app client Id that you created from https://account.live.com/developers/applications.
         private const string ClientID = "%YourAppClientId%";
         private LiveAuthForm authForm;
         private LiveAuthClient liveAuthClient;
@@ -29,7 +29,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
         {
             if (ClientID.Contains('%'))
             {
-                throw new ArgumentException("Update the ClientID with your app client Id that you created from https://manage.dev.live.com.");
+                throw new ArgumentException("Update the ClientID with your app client Id that you created from https://account.live.com/developers/applications.");
             }
 
             InitializeComponent();

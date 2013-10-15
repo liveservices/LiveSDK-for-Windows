@@ -15,6 +15,7 @@ namespace Microsoft.Live
     // 4. Base64url encode each part and append together separated by "." 
 
     using System;
+    using System.Diagnostics;
     using System.Collections.Generic;
     using System.Security.Cryptography;
     using System.Text.RegularExpressions;
@@ -80,8 +81,13 @@ namespace Microsoft.Live
         /// <summary>
         /// Initializes a new instance of JsonWebToken instance.
         /// </summary>
-        public JsonWebToken(string token, Dictionary<int, string> keyIdsKeys)
+        public JsonWebToken(string token, object secrets)
         {
+            var keyMap = secrets as IDictionary<int, string>;
+            var key = secrets as string;
+
+            Debug.Assert(keyMap != null || !string.IsNullOrEmpty(key));
+
             // Get the token segments & perform validation
             string[] tokenSegments = this.SplitToken(token);
 
@@ -96,15 +102,20 @@ namespace Microsoft.Live
             // Get the signature
             this.Signature = tokenSegments[2];
 
-            // Ensure that the tokens KeyId exists in the secret keys list
-            if (!keyIdsKeys.ContainsKey(this.Envelope.KeyId))
+            if (keyMap != null)
             {
-                throw new Exception(string.Format("Could not find key with id {0}", this.Envelope.KeyId));
+                // If a secret key map is provided, ensure that the token's KeyId exists in the key map.
+                if (!keyMap.ContainsKey(this.Envelope.KeyId))
+                {
+                    throw new Exception(string.Format("Could not find key with id {0}", this.Envelope.KeyId));
+                }
+
+                key = keyMap[this.Envelope.KeyId];
             }
 
             // Validation
             this.ValidateEnvelope(this.Envelope);
-            this.ValidateSignature(keyIdsKeys[this.Envelope.KeyId]);
+            this.ValidateSignature(key);
         }
 
         #endregion

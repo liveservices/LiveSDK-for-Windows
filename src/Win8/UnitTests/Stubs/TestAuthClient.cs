@@ -85,87 +85,11 @@
 
         public LiveConnectSession LoadSession(LiveAuthClient authClient)
         {
-            ApplicationDataContainer appData = ApplicationData.Current.RoamingSettings;
-            LiveConnectSession session = null;
-            if (appData.Values.Count > 0)
-            {
-                session = new LiveConnectSession(authClient);
-
-                if (appData.Values.ContainsKey(AuthConstants.AccessToken))
-                {
-                    session.AccessToken = appData.Values[AuthConstants.AccessToken] as string;
-                }
-
-                if (appData.Values.ContainsKey(AuthConstants.AuthenticationToken))
-                {
-                    session.AuthenticationToken = appData.Values[AuthConstants.AuthenticationToken] as string;
-                }
-
-                if (appData.Values.ContainsKey(AuthConstants.RefreshToken))
-                {
-                    session.RefreshToken = appData.Values[AuthConstants.RefreshToken] as string;
-                }
-
-                if (appData.Values.ContainsKey(AuthConstants.Expires))
-                {
-                    session.Expires = (DateTimeOffset)appData.Values[AuthConstants.Expires];
-                }
-
-                if (appData.Values.ContainsKey(AuthConstants.Scope))
-                {
-                    session.Scopes = LiveAuthClient.ParseScopeString(appData.Values[AuthConstants.Scope] as string);
-                    TestAuthClient.Scopes = session.Scopes;
-                }
-            }
-
-            return session;
+            return null;
         }
 
         public void SaveSession(LiveConnectSession session)
         {
-            if (session != null)
-            {
-                ApplicationDataContainer appData = ApplicationData.Current.RoamingSettings;
-
-                if (appData.Values.ContainsKey(AuthConstants.AccessToken))
-                {
-                    appData.Values.Remove(AuthConstants.AccessToken);
-                }
-
-                appData.Values.Add(AuthConstants.AccessToken, session.AccessToken);
-
-                if (appData.Values.ContainsKey(AuthConstants.AuthenticationToken))
-                {
-                    appData.Values.Remove(AuthConstants.AuthenticationToken);
-                }
-
-                appData.Values.Add(AuthConstants.AuthenticationToken, session.AuthenticationToken);
-
-                if (!string.IsNullOrEmpty(session.RefreshToken))
-                {
-                    if (appData.Values.ContainsKey(AuthConstants.RefreshToken))
-                    {
-                        appData.Values.Remove(AuthConstants.RefreshToken);
-                    }
-
-                    appData.Values.Add(AuthConstants.RefreshToken, session.RefreshToken);
-                }
-
-                if (appData.Values.ContainsKey(AuthConstants.Expires))
-                {
-                    appData.Values.Remove(AuthConstants.Expires);
-                }
-
-                appData.Values.Add(AuthConstants.Expires, session.Expires);
-
-                if (appData.Values.ContainsKey(AuthConstants.Scope))
-                {
-                    appData.Values.Remove(AuthConstants.Scope);
-                }
-
-                appData.Values.Add(AuthConstants.Scope, LiveAuthClient.BuildScopeString(session.Scopes));
-                TestAuthClient.Scopes = session.Scopes;
-            }
         }
     }
 }

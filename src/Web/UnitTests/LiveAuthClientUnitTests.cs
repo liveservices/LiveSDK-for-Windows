@@ -27,7 +27,7 @@ namespace Microsoft.Live.Web.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void LiveAuthClient_Constructor_NullClientSecret()
         {
-            new LiveAuthClient("000000004802B729", null, null);
+            new LiveAuthClient("000000004802B729", (string)null, null);
         }
 
         [TestMethod]

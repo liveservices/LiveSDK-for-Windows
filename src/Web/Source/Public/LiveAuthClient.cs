@@ -27,8 +27,8 @@
         /// <param name="clientSecret">The client secret of the app.</param>
         /// <param name="defaultRedirectUrl">The default redirect URL for the site.</param>
         public LiveAuthClient(
-            string clientId, 
-            string clientSecret, 
+            string clientId,
+            string clientSecret,
             string defaultRedirectUrl)
             : this(clientId, clientSecret, defaultRedirectUrl, null)
         {
@@ -58,6 +58,73 @@
             this.authClient = new LiveAuthClientCore(clientId, clientSecret, refreshTokenHandler, this);
         }
 
+        /// <summary>
+        /// Initializes an instance of LiveAuthClient class.
+        /// To address security concerns, developers may wish to change their client secret. This constructor allows
+        /// the developer to pass in a client secret map to handle the client secret change and ensure a graceful experience
+        /// during the change rollover. You can create a new secret for your app on the developer portal (https://account.live.com/developers/applications)
+        /// site. Once a new secret is created, the site will indicate the version of each secret, new and old.
+        /// For example, the old secret and new secret may be shown as v0 and v1 on the developer portal site.
+        /// Before the new secret is activated, both secrets are accepted by the Microsoft authentication server. You should update your 
+        /// code to provide the secret map when intializing a LiveAuthClient instance. This will ensure that the new secret
+        /// will be used when communicating with the Microsoft authentication server, and the LiveAuthClient instance will use the correct version of
+        /// the client secret to validate authentication tokens that may be signed by either old or new versions of client secret. 
+        /// Once you activate the new secret on the developer portal site, the old secret will no longer be accepted by the Microsoft 
+        /// authentication server, however, you may still want to keep the old secret in the map for one day, so that 
+        /// clients with authentication tokens signed with the old secret will continue to work.
+        /// </summary>
+        /// <param name="clientId">The client Id of the app.</param>
+        /// <param name="clientSecretMap">The client secret map of the app.</param>
+        /// <param name="defaultRedirectUrl">The default redirect URL for the site.</param>
+        public LiveAuthClient(
+            string clientId,
+            IDictionary<int, string> clientSecretMap,
+            string defaultRedirectUrl)
+            : this(clientId, clientSecretMap, defaultRedirectUrl, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes an instance of LiveAuthClient class.
+        /// To address security concerns, developers may wish to change their client secret. This constructor allows
+        /// the developer to pass in a client secret map to handle the client secret change and ensure a graceful experience
+        /// during the change rollover. You can create a new secret for your app on the developer portal (https://account.live.com/developers/applications)
+        /// site. Once a new secret is created, the site will indicate the version of each secret, new and old.
+        /// For example, the old secret and new secret may be shown as v0 and v1 on the developer portal site.
+        /// Before the new secret is activated, both secrets are accepted by the Microsoft authentication server. You should update your 
+        /// code to provide the secret map when intializing a LiveAuthClient instance. This will ensure that the new secret
+        /// will be used when communicating with the Microsoft authentication server, and the LiveAuthClient instance will use the correct version of
+        /// the client secret to validate authentication tokens that may be signed by either old or new versions of client secret. 
+        /// Once you activate the new secret on the developer portal site, the old secret will no longer be accepted by the Microsoft 
+        /// authentication server, however, you may still want to keep the old secret in the map for one day, so that 
+        /// clients with authentication tokens signed with the old secret will continue to work.
+        /// </summary>
+        /// <param name="clientId">The client Id of the app.</param>
+        /// <param name="clientSecretMap">The client secret map of the app.</param>
+        /// <param name="defaultRedirectUrl">The default redirect URL for the site.</param>
+        /// <param name="refreshTokenHandler">An IRefreshTokenHandler instance to handle refresh token persistency and retrieval.</param>
+        public LiveAuthClient(
+            string clientId,
+            IDictionary<int, string> clientSecretMap,
+            string defaultRedirectUrl,
+            IRefreshTokenHandler refreshTokenHandler)
+        {
+            LiveUtility.ValidateNotNullOrWhiteSpaceString(clientId, "clientId");
+            LiveUtility.ValidateNotNullParameter(clientSecretMap, "clientSecretMap");
+            if (clientSecretMap.Count == 0)
+            {
+                throw new ArgumentException("Client secret must be provided.", "clientSecretMap");
+            }
+
+            if (!string.IsNullOrWhiteSpace(defaultRedirectUrl))
+            {
+                LiveUtility.ValidateUrl(defaultRedirectUrl, "defaultRedirectUrl");
+                this.defaultRedirectUrl = defaultRedirectUrl;
+            }
+
+            this.authClient = new LiveAuthClientCore(clientId, clientSecretMap, refreshTokenHandler, this);   
+        }
+        
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>

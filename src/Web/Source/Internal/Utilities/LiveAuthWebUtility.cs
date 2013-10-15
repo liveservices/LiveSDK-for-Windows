@@ -14,15 +14,15 @@
         /// Decrypt an authentication token and parse into a JsonWebToken object.
         /// </summary>
         public static bool ReadUserIdFromAuthenticationToken(
-            string authenticationToken, 
-            string clientSecret, 
+            string authenticationToken,
+            object clientSecrets, 
             out string userId, 
             out LiveAuthException error)
         {
             userId = null;
             JsonWebToken jwt;
             bool succeeded = false;
-            if (DecodeAuthenticationToken(authenticationToken, clientSecret, out jwt, out error))
+            if (DecodeAuthenticationToken(authenticationToken, clientSecrets, out jwt, out error))
             {
                 userId = jwt.Claims.UserId;
 
@@ -38,28 +38,25 @@
 
             return succeeded;
         }
-
+        
         /// <summary>
         /// Decrypt an authentication token and parse into a JsonWebToken object.
         /// </summary>
         public static bool DecodeAuthenticationToken(
             string authenticationToken,
-            string clientSecret,
+            object clientSecrets,
             out JsonWebToken token,
             out LiveAuthException error)
         {
             Debug.Assert(!string.IsNullOrEmpty(authenticationToken));
-            Debug.Assert(!string.IsNullOrEmpty(clientSecret));
+            Debug.Assert(clientSecrets != null);
 
             token = null;
             error = null;
 
-            Dictionary<int, string> keys = new Dictionary<int, string>();
-            keys.Add(0, clientSecret);
-
             try
             {
-                token = new JsonWebToken(authenticationToken, keys);
+                token = new JsonWebToken(authenticationToken, clientSecrets);
                 return true;
             }
             catch (Exception ex)

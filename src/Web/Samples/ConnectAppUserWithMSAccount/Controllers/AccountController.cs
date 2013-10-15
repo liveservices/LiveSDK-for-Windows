@@ -32,9 +32,10 @@ namespace Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Controllers
         }
 
         private const string ClientId = "%YourAppClientId%"; // Your app client Id
+        private const int ClientSecretKey = 0; // Your app secret key (index)
         private const string ClientSecret = "%YourAppSecret%"; // Your app secret
         private const string ClientDomain = "%YourAppDomain%"; // Your app site domain, e.g. www.foo.com
-
+        
         private LiveAuthClient liveAuthClient;
         private MSAccountStatus msAccountStatus = MSAccountStatus.None;
 
@@ -170,7 +171,7 @@ namespace Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Controllers
         {
             if (ClientId.Contains('%') || ClientSecret.Contains('%') || ClientDomain.Contains('%'))
             {
-                throw new ArgumentException("Update the ClientId, ClientSecret, and ClientDomain with your app client Id, client secret and domain values that you get from https://manage.dev.live.com.");
+                throw new ArgumentException("Update the ClientId, ClientSecret, and ClientDomain with your app client Id, client secret and domain values that you get from https://account.live.com/developers/applications.");
             }
 
             await InitMSAccountAsync();
@@ -267,7 +268,9 @@ namespace Microsoft.Live.Web.Samples.ConnectAppUserWithMSAccount.Controllers
             {
                 if (this.liveAuthClient == null)
                 {
-                    this.liveAuthClient = new LiveAuthClient(ClientId, ClientSecret, null, this);
+                    IDictionary<int, string> secretMap = new Dictionary<int, string>();
+                    secretMap.Add(ClientSecretKey, ClientSecret);
+                    this.liveAuthClient = new LiveAuthClient(ClientId, secretMap, null, this);
                 }
 
                 return this.liveAuthClient;

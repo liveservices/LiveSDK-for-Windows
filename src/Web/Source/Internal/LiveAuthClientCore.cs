@@ -18,6 +18,7 @@
         private readonly LiveAuthClient publicAuthClient;
         private readonly string clientId;
         private readonly string clientSecret;
+        private readonly object clientSecrets;
         private readonly IRefreshTokenHandler refreshTokenHandler;
         private IEnumerable<string> initScopes;
         private HttpContextBase webContext;
@@ -34,7 +35,7 @@
         /// </summary>
         public LiveAuthClientCore(
             string clientId,
-            string clientSecret, 
+            string clientSecret,
             IRefreshTokenHandler refreshTokenHandler,
             LiveAuthClient authClient)
         {
@@ -44,8 +45,44 @@
 
             this.clientId = clientId;
             this.clientSecret = clientSecret;
+            this.clientSecrets = clientSecret;
             this.refreshTokenHandler = refreshTokenHandler;
             this.publicAuthClient = authClient;
+
+        }
+
+        /// <summary>
+        /// Initializes an new instance of the LiveAuthClientCore class.
+        /// </summary>
+        public LiveAuthClientCore(
+            string clientId,
+            IDictionary<int, string> clientSecretMap, 
+            IRefreshTokenHandler refreshTokenHandler,
+            LiveAuthClient authClient)
+        {
+            Debug.Assert(!string.IsNullOrEmpty(clientId));
+            Debug.Assert(clientSecretMap != null && clientSecretMap.Count > 0);
+            Debug.Assert(authClient != null);
+
+            this.clientId = clientId;
+            this.clientSecrets = clientSecretMap;
+            this.refreshTokenHandler = refreshTokenHandler;
+            this.publicAuthClient = authClient;
+
+            // Get latest version
+            int largestIndex = clientSecretMap.Keys.First();
+            if (clientSecretMap.Count > 1)
+            {
+                foreach (int index in clientSecretMap.Keys)
+                {
+                    if (index > largestIndex)
+                    {
+                        largestIndex = index;
+                    }
+                }
+            }
+
+            this.clientSecret = clientSecretMap[largestIndex];
         }
         
         /// <summary>
@@ -54,11 +91,11 @@
         public bool GetUserId(string authenticationToken, out string userId, out LiveAuthException error)
         {
             Debug.Assert(!string.IsNullOrEmpty(authenticationToken));
-            
+
             return LiveAuthWebUtility.ReadUserIdFromAuthenticationToken(
-                authenticationToken, 
-                this.clientSecret, 
-                out userId, 
+                authenticationToken,
+                this.clientSecrets,
+                out userId,
                 out error);
         }
 
@@ -519,13 +556,13 @@
                 LiveAuthException currentSessionError;
                 LiveAuthWebUtility.ReadUserIdFromAuthenticationToken(
                     currentSession.AuthenticationToken,
-                    this.clientSecret,
+                    this.clientSecrets,
                     out currentUserId,
                     out currentSessionError);
             }
 
             // Read user Id from the new session received from the auth server.
-            LiveAuthWebUtility.ReadUserIdFromAuthenticationToken(session.AuthenticationToken, this.clientSecret, out userId, out error);
+            LiveAuthWebUtility.ReadUserIdFromAuthenticationToken(session.AuthenticationToken, this.clientSecrets, out userId, out error);
 
             if (error == null)
             {
