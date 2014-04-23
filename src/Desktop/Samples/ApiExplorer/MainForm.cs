@@ -303,7 +303,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 
             try
             {
-                LiveLoginResult loginResult = await this.AuthClient.IntializeAsync();
+                LiveLoginResult loginResult = await this.AuthClient.InitializeAsync();
                 if (loginResult.Session != null)
                 {
                     this.liveConnectClient = new LiveConnectClient(loginResult.Session);

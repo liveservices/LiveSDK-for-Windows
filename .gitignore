@@ -30,3 +30,9 @@ src/WinStore/Samples/WindowsPhone/HTML/LiveSDKJavaScriptPhoneSample/bin/
 src/WinStore/Samples/WindowsPhone/HTML/LiveSDKJavaScriptPhoneSample/bld/
 src/WinStore/Samples/WindowsPhone/XAML/LiveSDKPhoneRTSample/bin/
 src/WinStore/Samples/WindowsPhone/XAML/LiveSDKPhoneRTSample/obj/
+src/Desktop/Source/obj/
+src/Desktop/Source/objd/
+src/Desktop/UnitTests/obj/
+src/Desktop/Samples/ApiExplorer/obj/
+src/Desktop/Samples/ApiExplorer/bin/
+src/Desktop/Source/bin/

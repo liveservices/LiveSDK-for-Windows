@@ -80,9 +80,9 @@
         /// provided by the app via the IRefreshTokenHandler instance.
         /// </summary>
         /// <returns>An async Task instance</returns>
-        public Task<LiveLoginResult> IntializeAsync()
+        public Task<LiveLoginResult> InitializeAsync()
         {
-            return this.IntializeAsync(new string[] { });
+            return this.InitializeAsync(new string[] { });
         }
 
         /// <summary>
@@ -92,7 +92,7 @@
         /// </summary>
         /// <param name="scopes">The list of offers that the application is requesting user to consent for.</param>
         /// <returns>An async Task instance.</returns>
-        public Task<LiveLoginResult> IntializeAsync(IEnumerable<string> scopes)
+        public Task<LiveLoginResult> InitializeAsync(IEnumerable<string> scopes)
         {
             LiveUtility.ValidateNotNullParameter(scopes, "scopes");
             return this.authClient.InitializeAsync(scopes);
