@@ -36,3 +36,7 @@ src/Desktop/UnitTests/obj/
 src/Desktop/Samples/ApiExplorer/obj/
 src/Desktop/Samples/ApiExplorer/bin/
 src/Desktop/Source/bin/
+src/WinStore/Samples/Windows/HTML/PhotoSky/PhotoSkyJavaScript/bin/
+src/WinStore/Samples/Windows/HTML/PhotoSky/PhotoSkyJavaScript/bld/
+src/WinStore/Samples/Windows/XAML/PhotoSky/PhotoSkyCSharp/bin/
+src/WinStore/Samples/Windows/XAML/PhotoSky/PhotoSkyCSharp/obj/
