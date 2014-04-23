@@ -84,7 +84,7 @@
             }
 
             this.callback = callback;
-
+            this.webBrowser.NavigationFailed += OnNavigationFailed;
             this.webBrowser.Navigated += OnFirstNavigated;
             this.webBrowser.Navigating += OnNavigating;
             this.webBrowser.Loaded += OnLoaded;
@@ -92,7 +92,6 @@
             this.rootVisual = Application.Current.RootVisual as PhoneApplicationFrame;
             if (this.rootVisual != null)
             {
-                this.rootVisual.Navigating += OnRootNavigating;
                 this.rootPage = this.rootVisual.Content as PhoneApplicationPage;
                 if (this.rootPage != null)
                 {
@@ -101,23 +100,27 @@
             }
         }
 
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            this.OnFirstNavigated(this, null);
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             this.Loaded -= OnLoaded;
             this.webBrowser.Navigate(this.consentUrl);
         }
 
-        private void OnRootNavigating(object sender, NavigatingCancelEventArgs e)
-        {
-            this.OnAuthFlowEnded(null);
-
-            e.Cancel = true;
-        }
-
         private void OnBackKeyPress(object sender, CancelEventArgs e)
         {
-            this.OnAuthFlowEnded(null);
-
+            if (this.webBrowser.CanGoBack)
+            {
+                this.webBrowser.GoBack();
+            }
+            else
+            {
+                this.OnAuthFlowEnded(null);
+            }
             e.Cancel = true;
         }
 
@@ -139,11 +142,6 @@
 
         private void OnAuthFlowEnded(string resultData)
         {
-            if (this.rootVisual != null)
-            {
-                this.rootVisual.Navigating -= OnRootNavigating;
-            }
-
             if (this.rootPage != null)
             {
                 this.rootPage.BackKeyPress -= OnBackKeyPress;
