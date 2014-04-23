@@ -1,0 +1,10 @@
+﻿  .fragment section[role=main] {
+		display: -ms-grid;
+		-ms-grid-rows: 200px auto 1fr;
+		-ms-grid-columns: 1fr auto 1fr;
+    }
+
+	.fragment #content {
+		-ms-grid-row: 2;
+		-ms-grid-column: 2;
+    }

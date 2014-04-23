@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="LiveSDKPhoneRTSample.UploadDownload"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LiveSDKPhoneRTSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1"  FontSize="24" Margin="5,0,5,10">Upload and Download</TextBlock>
+        <StackPanel Grid.Row="2" Grid.Column="1"  Orientation="Vertical" 
+                    VerticalAlignment="Top">
+            <TextBlock>A file URL from the Internet:</TextBlock>
+            <TextBox x:Name="imgSourceUrlTextBox" Text="http://upload.wikimedia.org/wikipedia/commons/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1"  Orientation="Vertical" 
+                    VerticalAlignment="Top">
+            <TextBlock>Upload path:</TextBlock>
+            <TextBox x:Name="uploadPathTextBox" Text="me/skydrive"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Vertical">
+            <TextBlock>Uploaded resource on SkyDrive:</TextBlock>
+            <TextBox x:Name="uploadedResourceTextBox" Height="81" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Vertical">
+            <TextBlock>Image downloaded from SkyDrive:</TextBlock>
+            <Image x:Name="skydriveImage"></Image>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Click="RunButton_Click">Run</Button>
+            <Button Margin="20,0,0,0" Click="ClearButton_Click">Clear</Button>
+        </StackPanel>
+    </Grid>
+</Page>

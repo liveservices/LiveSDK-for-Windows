@@ -101,11 +101,11 @@
         /// <summary>
         /// Parses a string response body and creates a LiveOperationResult object from it.
         /// </summary>
-        protected LiveOperationResult CreateOperationResultFrom(string responseBody)
+        internal static LiveOperationResult CreateOperationResultFrom(string responseBody, ApiMethod method)
         {
             if (string.IsNullOrEmpty(responseBody))
             {
-                if (this.Method != ApiMethod.Delete)
+                if (method != ApiMethod.Delete)
                 {
                     var error = new LiveConnectException(
                         ApiClientErrorCode, 
@@ -113,7 +113,7 @@
                     return new LiveOperationResult(error, false);
                 }
 
-                return new LiveOperationResult(new DynamicDictionary(), responseBody);
+                return new LiveOperationResult(null, responseBody);
             }
 
             return LiveOperationResult.FromResponse(responseBody);
@@ -143,7 +143,7 @@
                     using (var sr = new StreamReader(responseStream))
                     {
                         string rawResult = sr.ReadToEnd();
-                        opResult = this.CreateOperationResultFrom(rawResult);
+                        opResult = CreateOperationResultFrom(rawResult, this.Method);
                     }
                 }
             }

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <!--<Identity Name="BUILD.dbac92f0-7776-400d-b727-54be81b19810" Publisher="CN=skrueger" Version="1.0.0.3" />
+  <mp:PhoneIdentity PhoneProductId="c590ec51-1d83-4f7d-ae23-853c3c47e7f2" PhonePublisherId="00000000-0000-0000-0000-000000000000" />-->
+  <Identity Name="BUILD.88a704d9-d7b9-42ef-b95e-6ca9776c1811" Publisher="CN=liwa" Version="1.0.0.20" />
+  <mp:PhoneIdentity PhoneProductId="0e568349-b3ee-4f07-b5f7-d52161d00d15" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>LiveSDKPhoneRTSample</DisplayName>
+    <PublisherDisplayName>liwa</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="LiveSDKPhoneRTSample.App">
+      <m3:VisualElements DisplayName="LiveSDKPhoneRTSample" Square150x150Logo="Assets\Logo150.png" Square44x44Logo="Assets\Logo44.png" Description="LiveSDKPhoneRTSample" ForegroundText="light" BackgroundColor="#464646">
+        <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Logo71.png">
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\SplashScreen.png" />
+        <m3:ApplicationView MinWidth="width320" />
+        <!--Used in XAML Designer. DO NOT REMOVE-->
+      </m3:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+  </Capabilities>
+</Package>

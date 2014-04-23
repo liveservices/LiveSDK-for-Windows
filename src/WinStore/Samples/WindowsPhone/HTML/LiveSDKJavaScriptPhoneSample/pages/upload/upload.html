@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>uploadDownload</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.Phone.WinJS.2.1/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.Phone.WinJS.2.1/js/base.js"></script>
+    <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script>
+
+    <link href="upload.css" rel="stylesheet" />
+    <script src="upload.js"></script>
+</head>
+<body>
+    <div class="upload fragment">
+        <section aria-label="Main content">
+            <div id="rootGrid">
+                <div id="content">
+                    <h3 id="content-header">API Services Lab</h3>
+                    <table style="width: 100%; padding:1px">
+                        <tr>
+                            <td style="width: 70px;">
+                                <span>A file Url from the Internet: </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="image-source-uri" style="width: 100%; height: 21px;" value="http://i.imgur.com/SSfSKRc.jpg" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Upload path: </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="upload-path" style="width:100%; height: 21px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Uploaded resource on SkyDrive:</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1px">
+                                <textarea id="outputbox" style="width: 100%; height:120px; margin:0px"></textarea>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Downloaded image:</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 134px; padding:0px">
+                                <div id="img-file" style="margin:1px; width: 100%; height:100%;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <button id="send-request" style="margin-right: 10px;">Run</button>
+                                <button id="clear">Clear</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="footer" role="contentinfo">
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

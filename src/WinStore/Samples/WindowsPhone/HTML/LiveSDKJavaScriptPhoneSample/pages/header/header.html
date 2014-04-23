@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>header</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.Phone.WinJS.2.1/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.Phone.WinJS.2.1/js/base.js"></script>
+    <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script>
+
+    <link href="header.css" rel="stylesheet" />
+    <script src="header.js"></script>
+</head>
+<body>
+    <div class="header fragment">
+        <header aria-label="Header content" role="banner">
+
+            <div id="header-root">
+				<div id="header-left">
+					<div id="header-title" >
+						<img src="/images/mslogo.png" style="vertical-align: middle; width: 24px; height: 24px;" />
+						<span style="font-size:20pt; vertical-align: middle;">Live SDK JS Demo </span>
+					</div>
+					<div id="header-nav-menus" class="header-menu" style="display:block; font-size:16px">
+                        <a id="button-auth-status">Auth</a>
+                        <span> | </span>
+						<a id="button-nav-api">API-Lab</a>
+						<span> | </span>
+                        <a id="button-upload">UpLoad</a>
+                        <span>|</span>
+                        <a id="button-nav-doc" href="http://dev.live.com">Help</a>
+					</div>
+                    <div id="header-hr"><hr /></div>
+				</div>
+                <div id="header-right">
+                    <div id="profile-img">
+                        <img src="/images/profileIcon.png" style="height:80px"  />
+                    </div>
+                    <div id="profile-name">
+						<span id="profile-name" class="Name"></span>
+					</div >
+				</div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>apilab</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.Phone.WinJS.2.1/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.Phone.WinJS.2.1/js/base.js"></script>
+    <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script>
+
+    <link href="apilab.css" rel="stylesheet" />
+    <script src="apilab.js"></script>
+</head>
+<body>
+    <div class="apilab fragment">
+        <section aria-label="Main content" >
+
+            <div id="rootGrid">
+                <div id="content">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 60px;">
+                                <span>Auth Scope: </span>
+                            </td>
+                            <td>
+                                <select id="apiScope" name="select">
+                                    <option selected="selected">wl.signin</option>
+                                    <option>wl.basic</option>
+                                    <option>wl.birthday</option>
+                                    <option>wl.calendars</option>
+                                    <option>wl.calendars_update</option>
+                                    <option>wl.contacts_birthday</option>
+                                    <option>wl.contacts_create</option>
+                                    <option>wl.contacts_calendars</option>
+                                    <option>wl.contacts_photos</option>
+                                    <option>wl.contacts_skydrive</option>
+                                    <option>wl.emails</option>
+                                    <option>wl.events_create</option>
+                                    <option>wl.phone_numbers</option>
+                                    <option>wl.photos</option>
+                                    <option>wl.postal_addresses</option>
+                                    <option>wl.skydrive</option>
+                                    <option>wl.skydrive_update</option>
+                                    <option>wl.work_profile</option>
+                                </select>
+                            </td>
+                            <td style="width: 10px;"></td>
+                            <td style="width: 60px;">
+                                <span>Method: </span>
+                            </td>
+                            <td>
+                                <select id="apiMethod" name="select">
+                                    <option>GET</option>
+                                    <option>POST</option>
+                                    <option>PUT</option>
+                                    <option>DELETE</option>
+                                    <option>MOVE</option>
+                                    <option>COPY</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 98%; padding:1px">
+                        <tr>
+                            <td style="width: 70px;">
+                                <span>Path: </span>
+                            </td>
+                            <td>
+                                <input id="apiPath" style="width: 100%; height: 21px;" value="me" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Destination: </span>
+                            </td>
+                            <td>
+                                <input id="destinationPath" style="width:100%; height: 21px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Request JSON body:</span>
+                            </td>
+                            <td style="padding:1px">
+                                <textarea id="apiBody" style="width: 100%; height:80px; margin:0px"></textarea>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>
+                                <span>Code:</span>
+                                <span id="request-status"></span><br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 120px; padding:0px">
+                                <textarea id="code" class="Code" style="margin:1px; width: 100%; height:110px; font-size:12px" readonly="readonly"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width: 150px; vertical-align:bottom"><span>Output:</span></td>
+                            <td><button id="sendRequest">Run</button></td>
+                            <td><button id="clear" onclick="clearOutput();">Clear</button></td>
+                        </tr>
+                    </table>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width: 100%; vertical-align:top">
+                                <textarea id="outputbox" readonly="readonly" style="position:relative; top:-12px; left:4px; right:1px;width: 95.75%; height:120px; ; font-size:12px"></textarea><br />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="footer" role="contentinfo">
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>

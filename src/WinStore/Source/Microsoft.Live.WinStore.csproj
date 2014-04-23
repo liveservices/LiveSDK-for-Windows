@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+=========================================================================================================
+Microsoft.Live.Win8.csproj
+
+NOTE: This file will NOT build inside of CoreXT. The enlistment does not support Windows 8 C# XAML apps.
+      Microsoft.Live.Win8.CoreXT.csproj is set up to build this project inside of the CoreXT enlistment.
+      Any changes to this file should be mirrored inside of Microsoft.Live.Win8.msbuild.csproj.
+=========================================================================================================
+-->
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5B72B185-3010-480E-9209-D21FADA02E99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Live</RootNamespace>
+    <AssemblyName>Microsoft.Live</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <TargetFrameworkVersion />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_STORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_STORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Common\Source\Internal\ApiMethod.cs">
+      <Link>Internal\ApiMethod.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\AuthConstant.cs">
+      <Link>Internal\AuthConstant.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\AuthEndpointsInfo.cs">
+      <Link>Internal\AuthEndpointsInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\AuthErrorCodes.cs">
+      <Link>Internal\AuthErrorCodes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\DisplayType.cs">
+      <Link>Internal\DisplayType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\HttpMethods.cs">
+      <Link>Internal\HttpMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\IAuthClient.cs">
+      <Link>Internal\IAuthClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\IServerResponseReaderObserver.cs">
+      <Link>Internal\IServerResponseReaderObserver.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\IWebRequestFactory.cs">
+      <Link>Internal\IWebRequestFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveAuthClient.cs">
+      <Link>Public\LiveAuthClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveAuthException.cs">
+      <Link>Public\LiveAuthException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectClient.cs">
+      <Link>Public\LiveConnectClient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectException.cs">
+      <Link>Public\LiveConnectException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectSession.cs">
+      <Link>Public\LiveConnectSession.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveConnectSessionStatus.cs">
+      <Link>Public\LiveConnectSessionStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveLoginResult.cs">
+      <Link>Public\LiveLoginResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveOperationProgress.cs">
+      <Link>Public\LiveOperationProgress.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\LiveOperationResult.cs">
+      <Link>Public\LiveOperationResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\ApiOperation.cs">
+      <Link>Internal\Operations\ApiOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\ApiWriteOperation.cs">
+      <Link>Internal\Operations\ApiWriteOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\GetUploadLinkOperation.cs">
+      <Link>Internal\Operations\GetUploadLinkOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\Operation.cs">
+      <Link>Internal\Operations\Operation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\OperationStatus.cs">
+      <Link>Internal\Operations\OperationStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\RefreshTokenOperation.cs">
+      <Link>Internal\Operations\RefreshTokenOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Operations\WebOperation.cs">
+      <Link>Internal\Operations\WebOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\OverwriteOption.cs">
+      <Link>Public\OverwriteOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\QueryParameters.cs">
+      <Link>Internal\QueryParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\ResponseType.cs">
+      <Link>Internal\ResponseType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Serialization\IJsonSerializable.cs">
+      <Link>Internal\Serialization\IJsonSerializable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Serialization\IndentedTextWriter.cs">
+      <Link>Internal\Serialization\IndentedTextWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Serialization\JsonReader.cs">
+      <Link>Internal\Serialization\JsonReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\Serialization\JsonWriter.cs">
+      <Link>Internal\Serialization\JsonWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\ServerResponseReader.cs">
+      <Link>Internal\ServerResponseReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\StringBuilderExtension.cs">
+      <Link>Internal\StringBuilderExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Public\ThemeType.cs">
+      <Link>Public\ThemeType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\WebRequestFactory.cs">
+      <Link>Internal\WebRequestFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Source\Internal\DynamicDictionary.cs">
+      <Link>Internal\DynamicDictionary.cs</Link>
+    </Compile>
+    <Compile Include="Internal\HttpUtility.cs" />
+    <Compile Include="Public\LiveAuthClient.cs" />
+    <Compile Include="Public\LiveConnectClientExtensions.cs" />
+    <Compile Include="..\..\Common\Source\Public\LiveConnectClientTaskAsync.cs">
+      <Link>Public\LiveConnectClientTaskAsync.cs</Link>
+    </Compile>
+    <Compile Include="Public\LiveUploadOperation.cs" />
+    <Compile Include="Public\LiveDownloadOperation.cs" />
+    <Compile Include="Public\LiveDownloadOperationResult.cs" />
+    <Compile Include="Internal\LoginResult.cs" />
+    <Compile Include="Internal\Platform.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Internal\ResourceHelper.cs" />
+    <Compile Include="Internal\SynchronizationContextWrapper.cs" />
+    <Compile Include="Internal\TailoredAuthClient.cs" />
+    <Compile Include="Internal\Operations\TailoredDownloadOperation.cs" />
+    <Compile Include="Internal\Operations\TailoredUploadOperation.cs" />
+    <Compile Include="Internal\Operations\CreateBackgroundDownloadOperation.cs" />
+    <Compile Include="Internal\Operations\CreateBackgroundUploadOperation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SDKManifest.xml" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

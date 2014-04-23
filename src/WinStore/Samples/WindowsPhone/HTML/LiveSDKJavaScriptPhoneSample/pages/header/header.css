@@ -1,0 +1,53 @@
+﻿#header-root {
+    display: -ms-grid;
+    -ms-grid-columns: 10px auto 1fr auto 10px;
+	-ms-grid-rows: 10px auto 5px;
+}
+
+#header-left {
+	-ms-grid-column: 2;
+	-ms-grid-row: 2;
+    display: -ms-grid;
+    -ms-grid-rows: auto 10px 30px auto;
+}
+
+#header-right {
+	-ms-grid-column: 4;
+	-ms-grid-row: 2;
+}
+
+#header-title
+{
+	-ms-grid-row: 1;
+}
+
+
+#header-nav-menus
+{
+	-ms-grid-row: 3;
+}
+#header-hr 
+{
+    -ms-grid-row: 4;
+}
+
+#header-profile
+{
+	-ms-grid-column: 3;
+	-ms-grid-row: 1;
+}
+
+#profile-img
+{
+	-ms-grid-row: 1;
+}
+
+#profile-name
+{
+	-ms-grid-row: 3;
+}
+
+.header-menu
+{
+	font-size: large;
+}

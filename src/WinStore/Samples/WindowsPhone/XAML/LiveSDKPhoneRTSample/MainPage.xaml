@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="LiveSDKPhoneRTSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LiveSDKPhoneRTSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,50,0,0" HorizontalAlignment="Center">
+            <Image x:Name="mslogo" HorizontalAlignment="Left" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="30" Source="Assets/mslogo.png"/>
+            <TextBlock FontSize="24" Margin="5,0" VerticalAlignment="Center">Live SDK Store App Demo</TextBlock>            
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,120,0,0">
+            <Image x:Name="profileImage" Height="100" Width="100" Source="Assets/profileIcon.png" />
+            <TextBlock x:Name="greatingTextBlock" HorizontalAlignment="Center" FontSize="20" TextAlignment="Center"></TextBlock>
+            <TextBlock x:Name="statusTextBlock" HorizontalAlignment="Center" FontSize="20" TextAlignment="Center">You are not signed in</TextBlock>
+            <Button x:Name="connectButton" Visibility="Collapsed" HorizontalAlignment="Center" Content="Connect with Microsoft Account" Width="320" Click="connectButton_Click"></Button>
+            <Button x:Name="apiLabButton" HorizontalAlignment="Center" Width="320" Click="apiLabButton_Click">API Test</Button>
+            <Button x:Name="uploadDownloadButton" HorizontalAlignment="Center" Width="320" Click="uploadDownloadButton_Click">Upload and download</Button>
+        </StackPanel>
+    </Grid>
+</Page>

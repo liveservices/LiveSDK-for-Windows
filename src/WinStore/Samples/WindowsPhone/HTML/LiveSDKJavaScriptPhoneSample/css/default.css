@@ -1,0 +1,19 @@
+﻿#contenthost {
+    height: 100%;
+    width: 100%;
+}
+
+.fragment {
+    /* Define a grid with rows for a banner and a body */
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: auto 1fr;
+    display: -ms-grid;
+    height: 100%;
+    width: 100%;
+}
+
+  .fragment section[role=main] {
+        -ms-grid-row: 2;
+        height: 100%;
+        width: 100%;
+    }

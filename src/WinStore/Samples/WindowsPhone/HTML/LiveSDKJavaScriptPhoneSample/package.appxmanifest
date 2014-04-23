@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="BUILD.88a704d9-d7b9-42ef-b95e-6ca9776c1811" Version="1.0.0.18" Publisher="CN=liwa" />
+  <mp:PhoneIdentity PhoneProductId="c8a005f0-1037-4cf9-a2d2-f9df38e2db16" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>LiveSDKJavaScriptPhoneSample</DisplayName>
+    <PublisherDisplayName>liwa</PublisherDisplayName>
+    <Logo>images\logo50.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <m3:VisualElements DisplayName="LiveSDK JS Demo" Description="LiveSDKJavaScriptPhoneSample" BackgroundColor="#464646" ForegroundText="light" Square150x150Logo="images\logo150.png" Square44x44Logo="images\logo44.png" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest">
+        <m3:DefaultTile Square71x71Logo="images\logo71.png">
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="images\splashscreen.png" />
+      </m3:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
