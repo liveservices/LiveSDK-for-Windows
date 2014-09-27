@@ -113,8 +113,9 @@ namespace Microsoft.Live
                     {
                         progressHandler.Report(
                             new LiveOperationProgress(
-                                (long)t.Progress.BytesReceived,
-                                (long)t.Progress.TotalBytesToReceive));
+                                (long)t.Progress.BytesSent, //uploading, not downloading
+                                (long)t.Progress.TotalBytesToSend //uploading, not downloading
+                                ));
                     }
                 });
 
