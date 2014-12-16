@@ -227,7 +227,7 @@ namespace Microsoft.Live
         /// </summary>
         internal bool RefreshToken(Action<LiveLoginResult> completionCallback)
         {
-            if (this.Session.IsValid)
+            if (this.Session == null || this.Session.IsValid)
             {
                 return false;
             }
