@@ -41,7 +41,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
     public partial class MainForm : Form, IRefreshTokenHandler
     {
         // Update the ClientID with your app client Id that you created from https://account.live.com/developers/applications.
-        private const string ClientID = "%YourAppClientId%";
+        private const string ClientID = "0000000048122D4E";
         private LiveAuthForm authForm;
         private LiveAuthClient liveAuthClient;
         private LiveConnectClient liveConnectClient;
