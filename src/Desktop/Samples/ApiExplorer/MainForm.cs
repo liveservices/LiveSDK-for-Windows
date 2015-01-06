@@ -20,24 +20,19 @@
 //  THE SOFTWARE.
 // ------------------------------------------------------------------------------
 
+using LiveConnectDesktopSample;
+
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Live;
-
-using System.Runtime.InteropServices;
-
 
 namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 {
+
     public partial class MainForm : Form, IRefreshTokenHandler
     {
         // Update the ClientID with your app client Id that you created from https://account.live.com/developers/applications.
@@ -247,7 +242,9 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 
                 if (result != null)
                 {
-                    this.LogOutput(result.RawResult);
+                    this.LogOutput(this.methodComboBox.Text + "\t" + this.pathTextBox.Text);
+                    this.LogOutput(JsonHelper.FormatJson(result.RawResult));
+                    this.LogOutput(string.Empty);
                 }
             }
             catch (Exception ex)
