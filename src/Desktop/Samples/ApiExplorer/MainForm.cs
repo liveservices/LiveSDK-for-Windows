@@ -149,7 +149,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 
         private void LogOutput(string text)
         {
-            this.outputTextBox.Text += text + "\r\n";
+            this.outputTextBox.Text += text + Environment.NewLine;
         }
 
         private async void OnAuthCompleted(AuthResult result)
