@@ -319,6 +319,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
         private async void MainForm_Load(object sender, EventArgs e)
         {
             this.methodComboBox.SelectedIndex = 0;
+            this.scopeListBox.SelectedIndex = 0;
 
             try
             {
@@ -332,6 +333,19 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
             {
                 this.LogOutput("Received an error during initializing. " + ex.Message);
             }
+        }
+        private void MainForm_ClientSizeChange(object sender, EventArgs e)
+        {
+            this.connectGroupBox.SetBounds(
+                this.connectGroupBox.Bounds.X,
+                this.connectGroupBox.Bounds.Y,
+                Width - 43 > 0 ? Width - 43 : 658,
+                Height - 200 > 0 ? Height - 200 : 394);
+            this.outputTextBox.SetBounds(
+                this.outputTextBox.Bounds.X,
+                this.outputTextBox.Bounds.Y,
+                Width - 131 > 0 ? Width - 131 : 570,
+                Height - 388 > 0 ? Height - 388 : 209);
         }
 
         Task IRefreshTokenHandler.SaveRefreshTokenAsync(RefreshTokenInfo tokenInfo)
