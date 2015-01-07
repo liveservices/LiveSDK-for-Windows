@@ -327,6 +327,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
             this.Name = "MainForm";
             this.Text = "Live Connect API Explorer";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.ClientSizeChanged += new System.EventHandler(this.MainForm_ClientSizeChange);
             ((System.ComponentModel.ISupportInitialize)(this.mePictureBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

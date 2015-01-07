@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthResult.cs" />
+    <Compile Include="JsonHelper.cs" />
     <Compile Include="LiveAuthForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -20,24 +20,19 @@
 //  THE SOFTWARE.
 // ------------------------------------------------------------------------------
 
+using LiveConnectDesktopSample;
+
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Live;
-
-using System.Runtime.InteropServices;
-
 
 namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 {
+
     public partial class MainForm : Form, IRefreshTokenHandler
     {
         // Update the ClientID with your app client Id that you created from https://account.live.com/developers/applications.
@@ -154,7 +149,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 
         private void LogOutput(string text)
         {
-            this.outputTextBox.Text += text + "\r\n";
+            this.outputTextBox.Text += text + Environment.NewLine;
         }
 
         private async void OnAuthCompleted(AuthResult result)
@@ -247,7 +242,9 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
 
                 if (result != null)
                 {
-                    this.LogOutput(result.RawResult);
+                    this.LogOutput(this.methodComboBox.Text + "\t" + this.pathTextBox.Text);
+                    this.LogOutput(JsonHelper.FormatJson(result.RawResult));
+                    this.LogOutput(string.Empty);
                 }
             }
             catch (Exception ex)
@@ -322,6 +319,7 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
         private async void MainForm_Load(object sender, EventArgs e)
         {
             this.methodComboBox.SelectedIndex = 0;
+            this.scopeListBox.SelectedIndex = 0;
 
             try
             {
@@ -335,6 +333,19 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
             {
                 this.LogOutput("Received an error during initializing. " + ex.Message);
             }
+        }
+        private void MainForm_ClientSizeChange(object sender, EventArgs e)
+        {
+            this.connectGroupBox.SetBounds(
+                this.connectGroupBox.Bounds.X,
+                this.connectGroupBox.Bounds.Y,
+                Width - 43 > 0 ? Width - 43 : 658,
+                Height - 200 > 0 ? Height - 200 : 394);
+            this.outputTextBox.SetBounds(
+                this.outputTextBox.Bounds.X,
+                this.outputTextBox.Bounds.Y,
+                Width - 131 > 0 ? Width - 131 : 570,
+                Height - 388 > 0 ? Height - 388 : 209);
         }
 
         Task IRefreshTokenHandler.SaveRefreshTokenAsync(RefreshTokenInfo tokenInfo)
