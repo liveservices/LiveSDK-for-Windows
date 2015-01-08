@@ -183,4 +183,7 @@
   <data name="BackgroundTransferServiceRemoveError" xml:space="preserve">
     <value>An error occurred while removing a request to the BackgroundTransferService.</value>
   </data>
+  <data name="NoResponseData" xml:space="preserve">
+    <value>There was no response from the server for this request.</value>
+  </data>
 </root>

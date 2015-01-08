@@ -173,6 +173,15 @@ namespace Microsoft.Live {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was no response from the server for this request..
+        /// </summary>
+        internal static string NoResponseData {
+            get {
+                return ResourceManager.GetString("NoResponseData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The method &apos;{0}&apos; must be called from the application&apos;s UI thread..
         /// </summary>
         internal static string NotOnUiThread {
