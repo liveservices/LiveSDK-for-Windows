@@ -22,20 +22,33 @@
 
 namespace Microsoft.Live
 {
+    using System;
+    using System.Reflection;
     using System.Resources;
 
     internal static class ResourceHelper
     {
-        private static readonly ResourceManager resourceManager;
+        private static readonly ResourceManager PrimaryResourceManager;
+        private static readonly Lazy<ResourceManager> FallbackResourceManager;
 
         static ResourceHelper()
         {
-            resourceManager = new ResourceManager(typeof(Resources));
+            PrimaryResourceManager = new ResourceManager(typeof(Resources));
+            FallbackResourceManager = new Lazy<ResourceManager>(() =>
+                new ResourceManager("Microsoft.Live.Internal.Resources", Assembly.GetAssembly(typeof(Resources))));
         }
 
         public static string GetString(string name)
         {
-            return resourceManager.GetString(name);
+            try
+            {
+                return PrimaryResourceManager.GetString(name);
+            }
+            catch (MissingManifestResourceException)
+            {
+            }
+
+            return FallbackResourceManager.Value.GetString(name);
         }
     }
 }
