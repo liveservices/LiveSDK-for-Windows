@@ -100,7 +100,10 @@ namespace Microsoft.Live
             catch (WebException e)
             {
                 response = e.Response as HttpWebResponse;
-                loginResult = ReadResponse(response);
+                if (response != null)
+                {
+                    loginResult = ReadResponse(response);
+                }
             }
             catch (IOException ioe)
             {
