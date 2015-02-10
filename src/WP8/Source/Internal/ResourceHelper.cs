@@ -34,8 +34,10 @@ namespace Microsoft.Live
         static ResourceHelper()
         {
             PrimaryResourceManager = new ResourceManager(typeof(Resources));
+#if !WINDOWS_PHONE
             FallbackResourceManager = new Lazy<ResourceManager>(() =>
                 new ResourceManager("Microsoft.Live.Internal.Resources", Assembly.GetAssembly(typeof(Resources))));
+#endif
         }
 
         public static string GetString(string name)
@@ -46,9 +48,14 @@ namespace Microsoft.Live
             }
             catch (MissingManifestResourceException)
             {
+#if WINDOWS_PHONE
+                throw;
+#endif
             }
 
+#if !WINDOWS_PHONE
             return FallbackResourceManager.Value.GetString(name);
+#endif
         }
     }
 }
