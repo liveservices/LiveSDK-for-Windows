@@ -29,7 +29,9 @@ namespace Microsoft.Live
     internal static class ResourceHelper
     {
         private static readonly ResourceManager PrimaryResourceManager;
+#if !WINDOWS_PHONE
         private static readonly Lazy<ResourceManager> FallbackResourceManager;
+#endif
 
         static ResourceHelper()
         {
