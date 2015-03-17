@@ -22,7 +22,7 @@ The Live SDK enables access to users’ identity profile info and allows your ap
 * For Windows Runtime HTML apps: Click Windows > Extension SDKs and select both Live SDK and Windows Library for JavaScript 2.1. Further details available [here](http://msdn.microsoft.com/en-us/library/dn631820.aspx)
 * For Windows Runtime XAML apps: Click Windows 8.1 or Windows Phone 8.1 > Extensions and select Live SDK. Further details available [here](http://msdn.microsoft.com/en-us/library/dn631823.aspx)
 
-To use the SDK in a Windows Store app with single sign-in (the default), you need to register the application with the Windows Store. Failing to reigster the app will generate a runtime exception when logging in with the SDK. For more information about how to register with the Windows Store, click [here](http://msdn.microsoft.com/en-US/library/dn631823.aspx#associate_your_app_with_the_store)
+To use the SDK in a Windows Store app with single sign-in (the default), you need to register the application with the Windows Store. Failing to register the app will generate a runtime exception when logging in with the SDK. For more information about how to register with the Windows Store, click [here](http://msdn.microsoft.com/en-US/library/dn631823.aspx#associate_your_app_with_the_store)
 
 
 3. Documentation
