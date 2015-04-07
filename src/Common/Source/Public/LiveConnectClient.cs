@@ -130,7 +130,7 @@ namespace Microsoft.Live
             catch (FormatException)
             {
                 throw new ArgumentException(
-                    String.Format(CultureInfo.CurrentUICulture, ResourceHelper.GetString("UrlInvalid"), "path"),
+                    String.Format(CultureInfo.CurrentUICulture, ResourceHelper.GetString("UrlInvalid"), path),
                     "path");
             }
         }
