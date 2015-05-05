@@ -26,6 +26,7 @@ namespace Microsoft.Live
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -77,7 +78,7 @@ namespace Microsoft.Live
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// Gets and sets the theme used for the consent request.
         /// </summary>
@@ -123,7 +124,7 @@ namespace Microsoft.Live
         {
             return this.InitializeAsync(new List<string>());
         }
-        
+
         /// <summary>
         /// Initializes the auth client. Detects if user is already signed in,
         /// If user is already signed in, creates a valid Session.
@@ -132,11 +133,29 @@ namespace Microsoft.Live
         /// <param name="scopes">The list of offers that the application is requesting user consent for.</param>
         public Task<LiveLoginResult> InitializeAsync(IEnumerable<string> scopes)
         {
+            if (scopes != null)
+            {
+                return InitializeAsync(scopes.ToArray());
+            }
+            else
+            {
+                return InitializeAsync(null);
+            }
+        }
+
+        /// <summary>
+        /// Initializes the auth client. Detects if user is already signed in,
+        /// If user is already signed in, creates a valid Session.
+        /// This call is UI-less.
+        /// </summary>
+        /// <param name="scopes"></param>
+        /// <returns></returns>
+        public Task<LiveLoginResult> InitializeAsync(params string[] scopes)
+        {
             if (scopes == null)
             {
                 throw new ArgumentNullException("scopes");
             }
-
             return this.ExecuteAuthTaskAsync(scopes, true);
         }
 
@@ -146,11 +165,28 @@ namespace Microsoft.Live
         /// <param name="scopes">The list of offers that the application is requesting user consent for.</param>
         public Task<LiveLoginResult> LoginAsync(IEnumerable<string> scopes)
         {
+            if (scopes != null)
+            {
+                return LoginAsync(scopes.ToArray());
+            }
+            else
+            {
+                return LoginAsync(null);
+            }
+        }
+
+
+        /// <summary>
+        /// Displays the login/consent UI and returns a Session object when user completes the auth flow.
+        /// </summary>
+        /// <param name="scopes">The list of offers that the application is requesting user consent for.</param>
+        public Task<LiveLoginResult> LoginAsync(params string[] scopes)
+        {
             if (scopes == null && this.scopes == null)
             {
                 throw new ArgumentNullException("scopes");
             }
-            
+
             return this.ExecuteAuthTaskAsync(scopes, false);
         }
 
@@ -255,7 +291,7 @@ namespace Microsoft.Live
                 this.MergeScopes();
                 this.Session = result.Session;
             }
-            
+
             Interlocked.Decrement(ref this.asyncInProgress);
 
             if (result.Error != null)
@@ -277,7 +313,7 @@ namespace Microsoft.Live
 
             return session1 == session2;
         }
-        
+
         private static bool IsValidRedirectDomain(string redirectDomain)
         {
             if (!redirectDomain.StartsWith("https://", StringComparison.OrdinalIgnoreCase) &&
