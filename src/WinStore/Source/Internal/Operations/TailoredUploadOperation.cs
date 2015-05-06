@@ -263,7 +263,7 @@ namespace Microsoft.Live.Operations
             {
                 try
                 {
-                    IInputStream responseStream = this.uploadOp.GetResultStreamAt(0);
+                    IInputStream responseStream = this.uploadOp == null ? null : this.uploadOp.GetResultStreamAt(0);
                     if (responseStream == null)
                     {
                         var error = new LiveConnectException(
