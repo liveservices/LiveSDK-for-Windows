@@ -81,7 +81,7 @@ namespace Microsoft.Live
             if (this.loginStatus != null)
             {
                 // We have a result already, then return this one.
-                this.OnInitCompleted(null);
+				this.OnInitCompleted(this.loginStatus);
             }
             else
             {
