@@ -111,6 +111,9 @@ namespace Microsoft.Live.Desktop.Samples.ApiExplorer
             this.scopeListBox.Items.AddRange(new object[] {
             "wl.signin",
             "wl.basic",
+            "onedrive.readonly",
+            "onedrive.readwrite",
+            "onedrive.appfolder",
             "wl.birthday",
             "wl.calendars",
             "wl.calendars_update",
