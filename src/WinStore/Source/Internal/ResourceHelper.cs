@@ -43,6 +43,7 @@ namespace Microsoft.Live
     }
 #else
 
+    using System.Collections.Generic;
     using Windows.ApplicationModel.Resources.Core;
 
     internal static class ResourceHelper
