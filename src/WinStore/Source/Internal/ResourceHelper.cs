@@ -45,6 +45,7 @@ namespace Microsoft.Live
 
     using System.Collections.Generic;
     using Windows.ApplicationModel.Resources.Core;
+    using System.Diagnostics;
 
     internal static class ResourceHelper
     {
@@ -58,8 +59,10 @@ namespace Microsoft.Live
             ErrorMappings["BackgroundTransferServiceRemoveError"] = "An error occurred while removing a request to the BackgroundTransferService.";
             ErrorMappings["BackgroundUploadResponseHandlerError"] = "An error occurred while reading the response of the BackgroundUpload.";
             ErrorMappings["ConnectionError"] = "A connection to the server could not be established.";
+            ErrorMappings["CantLogout"] = "Log out is not supported because the user is logged in to this PC with a Microsoft account.";
             ErrorMappings["ConsentNotGranted"] = "User has not granted the application consent to access data in Windows Live.";
             ErrorMappings["FileNameInvalid"] = "Input parameter '{0}' is invalid.  '{0}' contains invalid characters.";
+            ErrorMappings["InvalidAuthClient"] = "The app is not configured correctly to use Live Connect services. To configure your app, please follow the instructions on http://go.microsoft.com/fwlink/?LinkId=220871."; 
             ErrorMappings["InvalidNullOrEmptyParameter"] = "Input parameter '{0}' is invalid.  '{0}' cannot be null or empty.";
             ErrorMappings["InvalidNullParameter"] = "Input parameter '{0}' is invalid.  '{0}' cannot be null.";
             ErrorMappings["LoginPopupAlreadyOpen"] = "The login page is already open.";
