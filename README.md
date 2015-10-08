@@ -1,4 +1,15 @@
-LiveSDK for Windows and Windows Phone
+Annoucement: There's a new OneDrive SDK
+================
+
+The Live SDK has been replaced by the [OneDrive API](https://dev.onedrive.com) and 
+[OneDrive SDK for C#](https://github.com/OneDrive/onedrive-sdk-csharp). All new projects
+should use the OneDrive API to integrate with OneDrive instead of Live SDK.
+
+This Live SDK project will remain available for existing applications to continue to use
+but new application development should be done using the OneDrive SDK.
+
+
+LiveSDK for Windows and Windows Phone (legacy)
 ================
 version 5.6
 
